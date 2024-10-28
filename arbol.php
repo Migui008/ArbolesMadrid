@@ -40,7 +40,19 @@
       ?>
     </div>
     <div id="article_main_sidebar">
-      
+        <div id="article_main_sidebar_image"></div>
+        <div id="article_main_sidebar_content">
+            <?php
+            if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
+                echo "<h4>Parques relacionados</h4>";
+            } elseif ($_POST['lang'] == 'en') {
+                echo "<h4>Related parks</h4>";
+            }
+            foreach(/*select nombreparque from parque join relacion on idparque = idparque WHERE idarbol = $idarbol*/){
+                echo /*Enlace*/;
+            }
+            ?>
+        </div>
     </div>
   </div>
 </body>
