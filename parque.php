@@ -40,7 +40,22 @@
       ?>
     </div>
     <div id="article_main_sidebar">
-      
+        <div id="article_main_sidebar_image"></div>
+        <div id="article_main_sidebar_map">
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </div>
+        <div id="article_main_sidebar_content">
+            <?php
+            if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
+                echo "<h4>Arboles relacionados</h4>";
+            } elseif ($_POST['lang'] == 'en') {
+                echo "<h4>Related trees</h4>";
+            }
+            foreach(/*select nombrearbol from arbol join relacion on idarbol = idarbol WHERE idparque = $idparque*/){
+                echo /*Enlace*/;
+            }
+            ?>
+        </div>
     </div>
   </div>
 </body>
