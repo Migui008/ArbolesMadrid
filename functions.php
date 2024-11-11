@@ -61,3 +61,79 @@ function incrementarVisitasParque($parque_id) {
     }
   $conn = null;
 }
+
+function loadArbolData($arbol_id){
+    require_once("bbddconnect.php");
+    global $conn; 
+
+    try{
+        $sqlArbolData="
+            SELECT a.`nombre`, a.`nombre_cientifico`, a.`familia`, a.`clase`
+            FROM `arboles` a
+            WHERE a.`id_arbol` = :id;
+        ";
+
+        $stmt = $conn->prepare($sqlArbolData);
+        $stmt->bindParam(':id', $arbol_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $data_arbol = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $sqlParquesRelacion="
+            SELECT p.nombre
+            FROM relacion r
+            INNER JOIN parques p ON r.id_parque = p.id_parque
+            WHERE r.id_arbol = :id;
+        ";
+
+        $stmt = $conn->prepare($sqlParquesRelacion);
+        $stmt->bindParam(':id', $arbol_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $parques = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        $data_arbol['parques'] = $parques;
+        incrementarVisitasArbol($arbol_id);
+    } catch (PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
+
+function loadParqueData($parque_id){
+    require_once("bbddconnect.php");
+    global $conn; 
+
+    try{
+        $sqlParqueData="
+            SELECT p.`nombre`, p.`direccion`, p.`transporte_bus`, p.`transporte_metro`, p.`transporte_renfe`, p.`latitud`, p.`longitud`
+            FROM `parques` p
+            WHERE p.`id_parque` = :id;
+        ";
+
+        $stmt = $conn->prepare($sqlParqueData);
+        $stmt->bindParam(':id', $parque_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $data_parque = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $sqlArbolesRelacion="
+            SELECT a.nombre
+            FROM relacion r
+            INNER JOIN arboles p ON r.id_arbol = a.id_arbol
+            WHERE r.id_parque = :id;
+        ";
+
+        $stmt = $conn->prepare($sqlArbolesRelacion);
+        $stmt->bindParam(':id', $parque_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $arboles = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        $data_parque['arboles'] = $arboles;
+        incrementarVisitasParque($parque_id);
+    } catch (PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
