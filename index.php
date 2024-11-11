@@ -11,8 +11,7 @@
 
 <body>
   <?= require_once('header.php')?>
-  <div id="sidebar">
-  </div>
+  <?= require_once('sidebar.php')?>
   <div id="index_main">
     <div id="index_main_arboles">
       <!--
