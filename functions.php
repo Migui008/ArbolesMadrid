@@ -1,5 +1,5 @@
 function incrementarVisitasArbol($arbol_id) {
-    require_once("bbddconnect.php");
+    require_once("dtbconnection.php");
     global $conn;
 
     try {
@@ -27,7 +27,7 @@ function incrementarVisitasArbol($arbol_id) {
 }
 
 function incrementarVisitasParque($parque_id) {
-    require_once("bbddconnect.php"); 
+    require_once("dtbconnection.php"); 
   	global $conn;
 
     try {
