@@ -2,9 +2,11 @@
   <div id="sidebar_mostVisited">
     <?php
     //mostVisitedArray = getMostVisited();
-    foreach(/*mostVisitedArray as id*/){
+    foreach(/*mostVisitedArray*/){
       ?>
-      <div class=""></div>
+      <div class="sidebar_mostVisited_link">
+        <a id="sidebar_mostVisited_link_text" href=""><!--link_name--></a>
+      </div>
       <?php
     }
     ?>
