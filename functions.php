@@ -94,6 +94,8 @@ function loadArbolData($arbol_id){
 
         $data_arbol['parques'] = $parques;
         incrementarVisitasArbol($arbol_id);
+
+        return $data_arbol;
     } catch (PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
     }
@@ -132,6 +134,8 @@ function loadParqueData($parque_id){
 
         $data_parque['arboles'] = $arboles;
         incrementarVisitasParque($parque_id);
+
+        return $data_parque;
     } catch (PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
     }
