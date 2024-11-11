@@ -8,6 +8,8 @@
   	<link rel="icon" type="image/png" href="icono.png">
 </head>
 <body>
+  <?= require_once('functions.php')?>
+  <?= require_once('header.php')?>
   <div id="article_main">
     <div class="languageSwitcher">
       <form class="langForm" id="langForm" action="" method="post">
