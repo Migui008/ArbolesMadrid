@@ -4,5 +4,5 @@
       <div id="header_options_arboles"></div>
       <div id="header_options_parques"></div>
     </div>
-    <div id="header_login"></div>
+    <div id="header_login"><a href="login.php"></a></div>
   </div>
