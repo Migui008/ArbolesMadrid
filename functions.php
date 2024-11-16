@@ -122,7 +122,7 @@ function loadParqueData($parque_id){
         $sqlArbolesRelacion="
             SELECT a.nombre
             FROM relacion r
-            INNER JOIN arboles p ON r.id_arbol = a.id_arbol
+            INNER JOIN arboles a ON r.id_arbol = a.id_arbol
             WHERE r.id_parque = :id;
         ";
 
