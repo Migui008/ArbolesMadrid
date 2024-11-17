@@ -26,17 +26,23 @@
       </form>
     </div>
     <div id="article_main_content">
-      <h1 id="article_main_content_title"><?= /*Nombre parque*/?></h1>
+        <?php
+        if(isset($_GET("id_parque"))){
+            $contenidoParque = loadParqueData($_GET["id_parque"]);
+            $textoParque = loadTextParque($_GET["id_parque"]);
+        }    
+        ?>
+      <h1 id="article_main_content_title"><?= $contenidoParque["nombre"]?></h1>
       <?php
         if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
-          foreach(/*Contenido where nombreparque = nombreparque*/){
-            echo "<h2 class='article_main_content_content_title'>" . /*Titulo sección ES*/ . "</h2>";
-                  echo "<p class='article_main_content_content_text'>" . /*Texto sección ES*/ . "</p>";
+          foreach($textoParque as $textoSeccion){
+            echo "<h2 class='article_main_content_content_title'>" . $textoSeccion['titulo'] . "</h2>";
+                  echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto'] . "</p>";
                   echo "<br>";
           } elseif ($_POST['lang'] == 'en') {
-            foreach(/*Contenido where nombreparque = nombreparque*/){
-            echo "<h2 class='article_main_content_content_title'>" . /*Titulo sección EN*/ . "</h2>";
-                  echo "<p class='article_main_content_content_text'>" . /*Texto sección EN*/ . "</p>";
+            foreach($textoParque as $textoSeccion){
+            echo "<h2 class='article_main_content_content_title'>" . $textoSeccion['titulo_en'] . "</h2>";
+                  echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto_en'] . "</p>";
                   echo "<br>";
           }
       ?>
@@ -53,9 +59,25 @@
             } elseif ($_POST['lang'] == 'en') {
                 echo "<h4>Related trees</h4>";
             }
-            foreach(/*select nombrearbol from arbol join relacion on idarbol = idarbol WHERE idparque = $idparque*/){
-                echo /*Enlace*/;
+            foreach($contenidoParque['arboles'] as $arbol){
+                echo "<a class='article_main_sidebar_content_link' href='arbol.php?id_arbol=".$arbol["id_arbol"]."'>".$arbol["nombre"]."</a>";
             }
+            if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
+                echo "<h4 class='article_main_sidebar_content_title'>Dirección</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['direccion']."</h4>";
+                
+                echo "<h4 class='article_main_sidebar_content_title'>Transporte Bus</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['transporte_bus']."</h4>";
+                
+                echo "<h4 class='article_main_sidebar_content_title'>Transporte Metro</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['transporte_metro']."</h4>";
+                
+                echo "<h4 class='article_main_sidebar_content_title'>Transporte Renfe</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['transporte_renfe']."</h4>";
+                
+            } elseif ($_POST['lang'] == 'en') {
+                
+            } 
             ?>
         </div>
     </div>
