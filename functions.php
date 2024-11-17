@@ -141,3 +141,49 @@ function loadParqueData($parque_id){
     }
     $conn = null;
 }
+
+function loadTextParque($parque_id){
+    require_once("bbddconnect.php");
+    global $conn; 
+
+    try{
+        $sqlParqueContenido = "
+            SELECT c.numero, c.titulo, c.titulo_en, c.texto, c.texto_en
+            FROM contenido c WHERE c.id_referencia_p = :id;
+        ";
+
+        $stmt = $conn->prepare($sqlParqueContenido);
+        $stmt->bindParam(':id',$parque_id, PDO::PARAM_INT);
+        $stmt->execute;
+
+        $contenido = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        return $contenido;
+    } catch (PDOException $e){
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
+
+function loadTextArbol($arbol_id){
+    require_once("bbddconnect.php");
+    global $conn; 
+
+    try{
+        $sqlArbolContenido = "
+            SELECT c.numero, c.titulo, c.titulo_en, c.texto, c.texto_en
+            FROM contenido c WHERE c.id_referencia_a = :id;
+        ";
+
+        $stmt = $conn->prepare($sqlArbolContenido);
+        $stmt->bindParam(':id',$arbol_id, PDO::PARAM_INT);
+        $stmt->execute;
+
+        $contenido = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        return $contenido;
+    } catch (PDOException $e){
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
