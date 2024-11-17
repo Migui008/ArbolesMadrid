@@ -14,6 +14,7 @@
   <?= require_once('sidebar.php')?>
   <div id="index_main">
     <div id="index_main_arboles">
+      <h2>Arboles</h2>
       <!--
       Arboles
       for each filtro
@@ -21,6 +22,7 @@
       -->
     </div>
     <div id="index_main_parques">
+      <h2>Parques</h2>
       <!--
       Parques
       for each filtro
