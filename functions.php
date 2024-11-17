@@ -90,7 +90,7 @@ function loadArbolData($arbol_id){
         $stmt->bindParam(':id', $arbol_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $parques = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $parques = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $data_arbol['parques'] = $parques;
         incrementarVisitasArbol($arbol_id);
@@ -130,7 +130,7 @@ function loadParqueData($parque_id){
         $stmt->bindParam(':id', $parque_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $arboles = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $arboles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $data_parque['arboles'] = $arboles;
         incrementarVisitasParque($parque_id);
