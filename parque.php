@@ -76,7 +76,17 @@
                 echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['transporte_renfe']."</h4>";
                 
             } elseif ($_POST['lang'] == 'en') {
+                echo "<h4 class='article_main_sidebar_content_title'>Address</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['direccion']."</h4>";
                 
+                echo "<h4 class='article_main_sidebar_content_title'>Bus</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['transporte_bus']."</h4>";
+                
+                echo "<h4 class='article_main_sidebar_content_title'>Subway</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['transporte_metro']."</h4>";
+                
+                echo "<h4 class='article_main_sidebar_content_title'>RENFE</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoParque['transporte_renfe']."</h4>";
             } 
             ?>
         </div>
