@@ -80,7 +80,7 @@ function loadArbolData($arbol_id){
         $data_arbol = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $sqlParquesRelacion="
-            SELECT p.nombre
+            SELECT p.nombre, p.id_parque
             FROM relacion r
             INNER JOIN parques p ON r.id_parque = p.id_parque
             WHERE r.id_arbol = :id;
@@ -120,7 +120,7 @@ function loadParqueData($parque_id){
         $data_parque = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $sqlArbolesRelacion="
-            SELECT a.nombre
+            SELECT a.nombre, a.id_arbol
             FROM relacion r
             INNER JOIN arboles a ON r.id_arbol = a.id_arbol
             WHERE r.id_parque = :id;
