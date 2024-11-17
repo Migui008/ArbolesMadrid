@@ -149,7 +149,8 @@ function loadTextParque($parque_id){
     try{
         $sqlParqueContenido = "
             SELECT c.numero, c.titulo, c.titulo_en, c.texto, c.texto_en
-            FROM contenido c WHERE c.id_referencia_p = :id;
+            FROM contenido c WHERE c.id_referencia_p = :id
+            ORDER BY c.numero;
         ";
 
         $stmt = $conn->prepare($sqlParqueContenido);
@@ -172,7 +173,8 @@ function loadTextArbol($arbol_id){
     try{
         $sqlArbolContenido = "
             SELECT c.numero, c.titulo, c.titulo_en, c.texto, c.texto_en
-            FROM contenido c WHERE c.id_referencia_a = :id;
+            FROM contenido c WHERE c.id_referencia_a = :id
+            ORDER BY c.numero;
         ";
 
         $stmt = $conn->prepare($sqlArbolContenido);
