@@ -156,7 +156,7 @@ function loadTextParque($parque_id){
 
         $stmt = $conn->prepare($sqlParqueContenido);
         $stmt->bindParam(':id',$parque_id, PDO::PARAM_INT);
-        $stmt->execute;
+        $stmt->execute();
 
         $contenido = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
@@ -180,7 +180,7 @@ function loadTextArbol($arbol_id){
 
         $stmt = $conn->prepare($sqlArbolContenido);
         $stmt->bindParam(':id',$arbol_id, PDO::PARAM_INT);
-        $stmt->execute;
+        $stmt->execute();
 
         $contenido = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
