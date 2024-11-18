@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arboles</title>
+    <title>Parques</title>
     <link rel="stylesheet" href="styles.css">
   	<link rel="icon" type="image/png" href="icono.png">
 </head>
 <body>
-  <?= require_once('functions.php')?>
-  <?= require_once('header.php')?>
+  <?php require_once('functions.php')?>
+  <?php require_once('header.php')?>
   <div id="article_main">
     <div class="languageSwitcher">
       <form class="langForm" id="langForm" action="" method="post">
@@ -27,24 +27,26 @@
     </div>
     <div id="article_main_content">
         <?php
-        if(isset($_GET("id_parque"))){
+        if(isset($_GET["id_parque"])){
             $contenidoParque = loadParqueData($_GET["id_parque"]);
             $textoParque = loadTextParque($_GET["id_parque"]);
         }    
         ?>
-      <h1 id="article_main_content_title"><?= $contenidoParque["nombre"]?></h1>
+      <h1 id="article_main_content_title"><?php $contenidoParque["nombre"] ?></h1>
       <?php
         if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
           foreach($textoParque as $textoSeccion){
             echo "<h2 class='article_main_content_content_title'>" . $textoSeccion['titulo'] . "</h2>";
                   echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto'] . "</p>";
                   echo "<br>";
-          } elseif ($_POST['lang'] == 'en') {
+          }
+        } elseif ($_POST['lang'] == 'en') {
             foreach($textoParque as $textoSeccion){
             echo "<h2 class='article_main_content_content_title'>" . $textoSeccion['titulo_en'] . "</h2>";
                   echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto_en'] . "</p>";
                   echo "<br>";
           }
+        }
       ?>
     </div>
     <div id="article_main_sidebar">
