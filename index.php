@@ -11,23 +11,23 @@
 
 <body>
   <?= require_once('header.php')?>
-  <?= require_once('sidebar.php')?>
+  <?= require_once('common_data.php')?>
   <div id="index_main">
     <div id="index_main_arboles">
       <h2>Arboles</h2>
-      <!--
-      Arboles
-      for each filtro
-      <div id="index_main_arboles_$filtro">$filtro</div>
-      -->
+      <?php
+      foreach($arboles_filter as $filter => $info){
+        echo "<a class='index_main_arboles' href='".$_SERVER['PHP_SELF']."/arboles.php?filter=".$filter."'></a>";
+      }
+      ?>
     </div>
     <div id="index_main_parques">
       <h2>Parques</h2>
-      <!--
-      Parques
-      for each filtro
-      <div id="index_main_parques_$filtro">$filtro</div>
-      -->
+      <?php
+      foreach($parques_filter as $filter => $info){
+        echo "<a class='index_main_parques' href='".$_SERVER['PHP_SELF']."/parques.php?filter=".$filter."'></a>";
+      }
+      ?>
     </div>
     <div id="index_main_bibliografia"></div>
   </div>
