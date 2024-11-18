@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parques</title>
     <link rel="stylesheet" href="styles.css">
   	<link rel="icon" type="image/png" href="icono.png">
+    <?php require_once('functions.php')?>
+    <?php require_once('header.php')?>
+    <?php
+        if(isset($_GET["id_parque"])){
+            $contenidoParque = loadParqueData($_GET["id_parque"]);
+            $textoParque = loadTextParque($_GET["id_parque"]);
+        }    
+        ?>
+    <title><?php $contenidoParque['nombre']?></title>
 </head>
 <body>
-  <?php require_once('functions.php')?>
-  <?php require_once('header.php')?>
+  
   <div id="article_main">
     <div class="languageSwitcher">
       <form class="langForm" id="langForm" action="" method="post">
@@ -26,12 +33,6 @@
       </form>
     </div>
     <div id="article_main_content">
-        <?php
-        if(isset($_GET["id_parque"])){
-            $contenidoParque = loadParqueData($_GET["id_parque"]);
-            $textoParque = loadTextParque($_GET["id_parque"]);
-        }    
-        ?>
       <h1 id="article_main_content_title"><?php $contenidoParque["nombre"] ?></h1>
       <?php
         if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
