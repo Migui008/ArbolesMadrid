@@ -17,7 +17,7 @@
       <h2>Arboles</h2>
       <?php
       foreach($arboles_filter as $filter => $info){
-        echo "<a class='index_main_arboles' href='".$_SERVER['PHP_SELF']."/arboles.php?filter=".$filter."'></a>";
+        echo "<a class='index_main_arboles' href='".$_SERVER['PHP_SELF']."/arboles.php?filter=".$filter."'>".$filter."</a>";
       }
       ?>
     </div>
@@ -25,7 +25,7 @@
       <h2>Parques</h2>
       <?php
       foreach($parques_filter as $filter => $info){
-        echo "<a class='index_main_parques' href='".$_SERVER['PHP_SELF']."/parques.php?filter=".$filter."'></a>";
+        echo "<a class='index_main_parques' href='".$_SERVER['PHP_SELF']."/parques.php?filter=".$filter."'>".$filter."</a>";
       }
       ?>
     </div>
