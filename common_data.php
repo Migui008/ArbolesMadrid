@@ -26,7 +26,7 @@ $arboles_filter=[
 ];
 
 $parques_filter=[
-  "zona o distrito" => 
+  "zona" => 
       ["SELECT DISTINCT p.zona
       FROM parques p ORDER BY p.zona;"],
   "tipo" => 
