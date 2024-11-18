@@ -158,7 +158,7 @@ function loadTextParque($parque_id){
         $stmt->bindParam(':id',$parque_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $contenido = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $contenido = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $contenido;
     } catch (PDOException $e){
@@ -182,7 +182,7 @@ function loadTextArbol($arbol_id){
         $stmt->bindParam(':id',$arbol_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $contenido = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $contenido = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $contenido;
     } catch (PDOException $e){
