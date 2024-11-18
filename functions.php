@@ -64,7 +64,7 @@ function incrementarVisitasParque($parque_id) {
 }
 
 function loadArbolData($arbol_id){
-    require_once("bbddconnect.php");
+    require_once("dtbconnection.php");
     global $conn; 
 
     try{
@@ -104,7 +104,7 @@ function loadArbolData($arbol_id){
 }
 
 function loadParqueData($parque_id){
-    require_once("bbddconnect.php");
+    require_once("dtbconnection.php");
     global $conn; 
 
     try{
@@ -144,7 +144,7 @@ function loadParqueData($parque_id){
 }
 
 function loadTextParque($parque_id){
-    require_once("bbddconnect.php");
+    require_once("dtbconnection.php");
     global $conn; 
 
     try{
@@ -168,7 +168,7 @@ function loadTextParque($parque_id){
 }
 
 function loadTextArbol($arbol_id){
-    require_once("bbddconnect.php");
+    require_once("dtbconnection.php");
     global $conn; 
 
     try{
