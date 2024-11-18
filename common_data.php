@@ -46,5 +46,5 @@ $parques_filter=[
       FROM parques p WHERE p.visitas >= 50 AND p.visitas <= 400;",
       "Más de 400"=>"SELECT p.nombre, p.id_arbol
       FROM parques p WHERE p.visitas > 400;"]
-]
+];
 ?>
