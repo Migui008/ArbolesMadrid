@@ -1,3 +1,4 @@
+<?php
 function incrementarVisitasArbol($arbol_id) {
     require_once("dtbconnection.php");
     global $conn;
@@ -189,3 +190,4 @@ function loadTextArbol($arbol_id){
     }
     $conn = null;
 }
+?>
