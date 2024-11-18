@@ -10,9 +10,9 @@
 </head>
 
 <body>
-  <?= require_once('header.php')?>
-  <?= require_once('sidebar.php')?>
-  <?= require_once('common_data.php')?>
+  <?php require_once('header.php')?>
+  <?php require_once('sidebar.php')?>
+  <?php require_once('common_data.php')?>
   <div id="index_main">
     <div id="index_main_arboles">
       <h2>Arboles</h2>
