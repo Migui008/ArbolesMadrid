@@ -39,7 +39,7 @@ $parques_filter=[
       FROM parques p WHERE :t1 != null AND :t2 != null;",
       "3" => "SELECT p.id_parque, p.nombre
       FROM parques p WHERE :t1 != null AND :t2 != null AND :t3 != null"], //bus, metro, renfe
-  "visitas" => => 
+  "visitas" =>
       ["Menos de 50"=>"SELECT p.id_parque, p.nombre
       FROM parques p WHERE p.visitas < 50",
       "Entre 50 y 400"=>"SELECT p.nombre, p.id_arbol
