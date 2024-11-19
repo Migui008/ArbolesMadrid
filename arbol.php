@@ -8,7 +8,7 @@
     <?php require_once('functions.php')?>
     <?php require_once('header.php')?>
     <?php
-        if(isset($_GET["id_parque"])){
+        if(isset($_GET["id_arbol"])){
             $contenidoArbol = loadArbolData($_GET["id_arbol"]);
             $textoArbol = loadTextArbol($_GET["id_arbol"]);
         }    
