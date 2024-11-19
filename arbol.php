@@ -13,7 +13,7 @@
             $textoArbol = loadTextArbol($_GET["id_arbol"]);
         }    
         ?>
-    <title><?php $contenidoArbol['nombre']?></title>
+    <title><?php echo $contenidoArbol['nombre']; ?></title>
 </head>
 <body>
   
@@ -40,12 +40,14 @@
             echo "<h2 class='article_main_content_content_title'>" . $textoSeccion['titulo'] . "</h2>";
                   echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto_en'] . "</p>";
                   echo "<br>";
-          } elseif ($_POST['lang'] == 'en') {
+          }
+        } elseif ($_POST['lang'] == 'en') {
             foreach($textoArbol as $textoSeccion){
             echo "<h2 class='article_main_content_content_title'>" . $textoSeccion['titulo_en'] . "</h2>";
                   echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto_en'] . "</p>";
                   echo "<br>";
           }
+        }
       ?>
     </div>
     <div id="article_main_sidebar">
