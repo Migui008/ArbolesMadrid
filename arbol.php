@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arboles</title>
     <link rel="stylesheet" href="styles.css">
   	<link rel="icon" type="image/png" href="icono.png">
+    <?php require_once('functions.php')?>
+    <?php require_once('header.php')?>
+    <?php
+        if(isset($_GET["id_parque"])){
+            $contenidoArbol = loadArbolData($_GET["id_arbol"]);
+            $textoArbol = loadTextArbol($_GET["id_arbol"]);
+        }    
+        ?>
+    <title><?php $contenidoArbol['nombre']?></title>
 </head>
 <body>
-  <?= require_once('functions.php')?>
-  <?= require_once('header.php')?>
+  
   <div id="article_main">
     <div class="languageSwitcher">
       <form class="langForm" id="langForm" action="" method="post">
@@ -26,13 +33,7 @@
       </form>
     </div>
     <div id="article_main_content">
-      <?php
-        if(isset($_GET("id_arbol"))){
-            $contenidoArbol = loadArbolData($_GET["id_arbol"]);
-            $textoArbol = loadTextArbol($_GET["id_arbol"]);
-        }    
-        ?>
-      <h1 id="article_main_content_title"><?= $contenidoArbol["nombre"]?></h1>
+      <h1 id="article_main_content_title"><?php $contenidoParque["nombre"] ?></h1>
       <?php
         if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
           foreach($textoArbol as $textoSeccion){
