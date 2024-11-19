@@ -38,7 +38,7 @@
         if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
           foreach($textoArbol as $textoSeccion){
             echo "<h2 class='article_main_content_content_title'>" . $textoSeccion['titulo'] . "</h2>";
-                  echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto_en'] . "</p>";
+                  echo "<p class='article_main_content_content_text'>" . $textoSeccion['texto'] . "</p>";
                   echo "<br>";
           }
         } elseif ($_POST['lang'] == 'en') {
