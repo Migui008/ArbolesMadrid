@@ -190,4 +190,42 @@ function loadTextArbol($arbol_id){
     }
     $conn = null;
 }
+
+function getAllParques(){
+    require_once("dtbconnection.php");
+    global $conn; 
+
+    try{
+        $sqlAllParques = "SELECT p.id_parque, p.nombre FROM parques p;";
+
+        $stmt = $conn->prepare($sqlAllParques);
+        $stmt->execute();
+
+        $parques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $parques;
+    } catch (PDOException $e){
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
+
+function getAllArboles(){
+    require_once("dtbconnection.php");
+    global $conn; 
+
+    try{
+        $sqlAllArboles = "SELECT a.id_arbol, a.nombre FROM arboles a;";
+
+        $stmt = $conn->prepare($sqlAllParques);
+        $stmt->execute();
+
+        $alboles = $stmt->fetchAll(PDO::FECT_ASSOC);
+
+        return $arboles;
+    } catch (PDOException $e){
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
 ?>
