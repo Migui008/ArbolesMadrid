@@ -26,11 +26,10 @@
     <?php
     if(isset($_GET['filter']) && !empty($_GET['filter'])){
       echo "Aun no está";
-    } else {
-      $parques = getAllParques();
-      foreach($parques as $parque){
+    }
+    $parques = getAllParques();
+    foreach($parques as $parque){
         echo "<a href='parque.php'?id_parque=".$parque['id_parque']." class='parques_main_enlaces_link'>".$parque['nombre']."</a>";
-      }
     }
     ?>
     </div>
