@@ -12,7 +12,7 @@
 <body>
   <?php require_once('header.php')?>
   <div id="arboles_main">
-  <form method="get" action="<?php $_SERVER['PHP_SELF']?>" id="arboles_main_form">
+  <form method="get" action="<?php $_SERVER['PHP_SELF']; ?>" id="arboles_main_form">
     <select name="filter" id="arboles_main_form_select">
     <?php 
     foreach($arboles_filter as $filtro => $datos){
