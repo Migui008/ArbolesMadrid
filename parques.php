@@ -29,7 +29,7 @@
     } else {
       $parques = getAllParques();
       foreach($parques as $parque){
-        echo "<a href='arbol.php'?id_parque=".$parque['id_parque']." class='parques_main_enlaces_link'>".$parque['nombre']."</a>";
+        echo "<a href='parque.php'?id_parque=".$parque['id_parque']." class='parques_main_enlaces_link'>".$parque['nombre']."</a>";
       }
     }
     ?>
