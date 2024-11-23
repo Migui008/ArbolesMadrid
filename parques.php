@@ -24,7 +24,7 @@
   </form>
     <div id="parques_main_enlaces">
     <?php
-    if(isset($_GET['filter'])){
+    if(isset($_GET['filter']) && !empty($_GET['filter'])){
       echo "Aun no está";
     } else {
       $parques = getAllParques();
