@@ -26,11 +26,10 @@
     <?php
     if(isset($_GET['filter']) && !empty($_GET['filter'])){
       echo "Aun no está";
-    } else {
-      $arboles = getAllArboles();
-      foreach($arboles as $arbol){
+    }
+    $arboles = getAllArboles();
+    foreach($arboles as $arbol){
         echo "<a href='arbol.php'?id_arbol=".$arbol['id_arbol']." class='arboles_main_enlaces_link'>".$arbol['nombre']."</a>";
-      }
     }
     ?>
     </div>
