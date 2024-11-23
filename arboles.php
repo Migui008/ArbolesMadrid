@@ -27,7 +27,7 @@
     if(isset($_GET['filter'])){
       echo "Aun no está";
     } else {
-      $parques = getAllArboles();
+      $arboles = getAllArboles();
       foreach($arboles as $arbol){
         echo "<a href='arbol.php'?id_arbol=".$arbol['id_arbol']." class='arboles_main_enlaces_link'>".$arbol['nombre']."</a>";
       }
