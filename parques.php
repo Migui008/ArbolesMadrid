@@ -15,7 +15,7 @@
   <form method="get" action="<?php $_SERVER['PHP_SELF']?>" id="parques_main_form">
     <select name="filter" id="parques_main_form_select">
     <?php 
-    foreach($parques_filter as $filtro){
+    foreach($parques_filter as $filtro => $datos){
       echo "<option value='".$filtro."' class='parques_main_form_select_option'>".$filtro."</option>";
     }
     ?>
