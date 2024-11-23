@@ -220,7 +220,7 @@ function getAllArboles(){
         $stmt = $conn->prepare($sqlAllArboles);
         $stmt->execute();
 
-        $arboles = $stmt->fetchAll(PDO::FECT_ASSOC);
+        $arboles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $arboles;
     } catch (PDOException $e){
