@@ -217,10 +217,10 @@ function getAllArboles(){
     try{
         $sqlAllArboles = "SELECT a.id_arbol, a.nombre FROM arboles a;";
 
-        $stmt = $conn->prepare($sqlAllParques);
+        $stmt = $conn->prepare($sqlAllArboles);
         $stmt->execute();
 
-        $alboles = $stmt->fetchAll(PDO::FECT_ASSOC);
+        $arboles = $stmt->fetchAll(PDO::FECT_ASSOC);
 
         return $arboles;
     } catch (PDOException $e){
