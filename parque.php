@@ -95,5 +95,13 @@
         </div>
     </div>
   </div>
+    <script>
+    var latitud = parseFloat(<?= json_encode($contenidoParque["latitud"]) ?>);
+    var longitud = parseFloat(<?= json_encode($contenidoParque["longitud"]) ?>);
+    </script>
+    <script src="functions.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLGJGJeXOzxATwdcn6gF7JYj2aseHiYT4&callback=initMap">
+    </script>
 </body>
 </html>
