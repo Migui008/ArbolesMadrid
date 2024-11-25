@@ -1,4 +1,5 @@
 <?php
+require_once("functions.php");
 // Inicia la sesión
 session_start();
 
