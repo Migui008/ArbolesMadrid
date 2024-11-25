@@ -229,11 +229,12 @@ function getAllArboles(){
     $conn = null;
 }
 
-function loginVerification($user, $pass){
+function loginVerification($user, $pass) {
     require_once("dtbconnection.php");
     global $conn;
 
     try {
+        // Consulta que obtiene el usuario y la contraseña de la base de datos
         $loginCheck = "SELECT l.user_id, l.username, l.password FROM login l WHERE l.username = :user;";
 
         $stmt = $conn->prepare($loginCheck);
@@ -242,8 +243,9 @@ function loginVerification($user, $pass){
 
         $login = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($login && password_verify($pass, $login['password'])) {  // Verificación segura de la contraseña
-            return true;
+        // Verifica que se haya encontrado un usuario y que la contraseña coincida
+        if ($login && password_verify($pass, $login['password'])) {
+            return $login;  // Devuelve todos los datos del usuario
         } else {
             return false;
         }
@@ -253,26 +255,4 @@ function loginVerification($user, $pass){
     $conn = null;
 }
 
-
-function loginData($user, $pass){
-    require_once("dtbconnection.php");
-    global $conn;
-
-    try{
-        $loginCheck = "SELECT l.user_id , l.username FROM login l WHERE l.username = :user AND l.password = :pass ;";
-
-        $stmt = $conn->prepare($loginCheck);
-        $stmt->bindParam(':user',$user, PDO::PARAM_STR);
-        $stmt->bindParam(':pass',$pass, PDO::PARAM_STR);
-        $stmt->execute();
-
-        $login = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $login;
-    } catch (PDOException $e){
-        echo "Error de conexión: " . $e->getMessage();
-    }
-    $conn = null;
-  }
-}
 ?>
