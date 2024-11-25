@@ -1,23 +1,3 @@
-<?php
-session_start();  // Inicia la sesión
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = htmlspecialchars(trim($_POST["username"]));
-    $pass = htmlspecialchars(trim($_POST["password"]));
-
-    if (!empty($user) && !empty($pass)) {
-        if (loginVerification($user, $pass) == true) {
-            $login = loginData($user, $pass);  // Obtén los datos del usuario
-            $_SESSION["user"] = $login["username"];
-            $_SESSION["id"] = $login["user_id"];
-
-            header("Location: index.php");
-            exit;
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,6 +10,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
   </head>
   <body>
+    <?php
+  	ini_set('display_errors', 1); 
+	error_reporting(E_ALL);
+	session_start();
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    	$user = htmlspecialchars(trim($_POST["username"]));
+    	$pass = htmlspecialchars(trim($_POST["password"]));
+
+    	if (!empty($user) && !empty($pass)) {
+        	if (loginVerification($user, $pass) == true) {
+            	$login = loginData($user, $pass);
+            	$_SESSION["user"] = $login["username"];
+            	$_SESSION["id"] = $login["user_id"];
+
+            	header("Location: index.php");
+            	exit;
+        	}
+    	}
+	}
+	?>
     <div id="login_main">
       <form method="post" action="login.php" id="login_main_form">
         <input type="text" name="username" class="login_main_form_input" placeholder="Username">
