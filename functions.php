@@ -254,4 +254,26 @@ function loginVerification($user,$pass){
     $conn = null;
   }
 }
+
+function loginData($user, $pass){
+    require_once("dtbconnection.php");
+    global $conn;
+
+    try{
+        $loginCheck = "SELECT l.user_id , l.username FROM login l WHERE l.username = :user AND l.password = :pass ;";
+
+        $stmt = $conn->prepare($loginCheck);
+        $stmt->bindParam(':user',$user, PDO::PARAM_STR);
+        $stmt->bindParam(':pass',$pass, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $login = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $login;
+    } catch (PDOException $e){
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+  }
+}
 ?>
