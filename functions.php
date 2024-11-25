@@ -267,7 +267,7 @@ function loginData($user, $pass){
         $stmt->bindParam(':pass',$pass, PDO::PARAM_STR);
         $stmt->execute();
 
-        $login = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $login = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $login;
     } catch (PDOException $e){
