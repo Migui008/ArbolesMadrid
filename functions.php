@@ -243,15 +243,22 @@ function loginVerification($user, $pass) {
 
         $login = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verifica que se haya encontrado un usuario y que la contraseña coincida
-        if ($login && password_verify($pass, $login['password'])) {
-            return $login;  // Devuelve todos los datos del usuario
+        // Verifica que se haya encontrado un usuario
+        if ($login) {
+            if (password_verify($pass, $login['password'])) {
+                return $login;  // Devuelve todos los datos del usuario
+            } else {
+                return false;
+            }
         } else {
+            echo "Usuario no encontrado.<br>";
             return false;
         }
+
     } catch (PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
     }
+
     $conn = null;
 }
 
