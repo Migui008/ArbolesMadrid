@@ -1,3 +1,23 @@
+<?php
+session_start();  // Inicia la sesión
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user = htmlspecialchars(trim($_POST["username"]));
+    $pass = htmlspecialchars(trim($_POST["password"]));
+
+    if (!empty($user) && !empty($pass)) {
+        if (loginVerification($user, $pass) == true) {
+            $login = loginData($user, $pass);  // Obtén los datos del usuario
+            $_SESSION["user"] = $login["username"];
+            $_SESSION["id"] = $login["user_id"];
+
+            header("Location: index.php");
+            exit;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,29 +28,6 @@
     <?php require_once('functions.php')?>
     <?php require_once('header.php')?>
     <title>Login</title>
-    <?php
-    session_start();
-    session_unset();
-    session_destroy();
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $user = htmlspecialchars(trim($_POST["username"]));
-    $pass = htmlspecialchars(trim($_POST["password"]));
-
-      if(!empty($user) && !empty($pass)){
-        $passSecured = md5($pass);
-
-        if(loginVerification($user,$pass) == true){
-          $login = loginData($user, $pass);
-          $_SESSION["user"] = $login["username"];
-          $_SESSION["id"] = $login["user_id"];
-
-          header("Location: index.php");
-          exit;
-        }
-      }
-    }
-?>
   </head>
   <body>
     <div id="login_main">
