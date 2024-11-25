@@ -4,5 +4,5 @@
       <div id="header_options_arboles"><a id="header_options_arboles_link" href="arboles.php">Arboles</a></div>
       <div id="header_options_parques"><a id="header_options_parques_link" href="parques.php">Parques</a></div>
     </div>
-    <div id="header_login"><a href="login.php"></a></div>
+    <div id="header_login" onclick="window.location='login.php'">Login</div>
   </div>
