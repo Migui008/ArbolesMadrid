@@ -1,22 +1,26 @@
 <?php
+// Inicia la sesión
 session_start();
 
+// Mostrar todos los errores
 ini_set('display_errors', 1); 
 error_reporting(E_ALL);
-
-echo "Inicio del archivo login.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = htmlspecialchars(trim($_POST["username"]));
     $pass = htmlspecialchars(trim($_POST["password"]));
 
+    // Verificar si los campos no están vacíos
     if (!empty($user) && !empty($pass)) {
-        if ($user == "admin" && $pass == "1234") {
-            $_SESSION["user"] = $user;
-            $_SESSION["id"] = 1;
+        // Verifica el usuario y la contraseña
+        $login = loginVerification($user, $pass);
 
-            echo "Login exitoso, redirigiendo...";
+        if ($login) {
+            // Si la verificación fue exitosa, guarda los datos en la sesión
+            $_SESSION["user"] = $login["username"];
+            $_SESSION["id"] = $login["user_id"];
 
+            // Redirige a la página principal
             header("Location: index.php");
             exit;
         } else {
