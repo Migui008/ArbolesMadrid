@@ -229,31 +229,30 @@ function getAllArboles(){
     $conn = null;
 }
 
-function loginVerification($user,$pass){
+function loginVerification($user, $pass){
     require_once("dtbconnection.php");
     global $conn;
 
-    try{
-        $loginCheck = "SELECT l.user_id , l.username FROM login l WHERE l.username = :user AND l.password = :pass ;";
+    try {
+        $loginCheck = "SELECT l.user_id, l.username, l.password FROM login l WHERE l.username = :user;";
 
         $stmt = $conn->prepare($loginCheck);
-        $stmt->bindParam(':user',$user, PDO::PARAM_STR);
-        $stmt->bindParam(':pass',$pass, PDO::PARAM_STR);
+        $stmt->bindParam(':user', $user, PDO::PARAM_STR);
         $stmt->execute();
 
-        $login = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $login = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($login) {
-          return true;
+        if ($login && password_verify($pass, $login['password'])) {  // Verificación segura de la contraseña
+            return true;
         } else {
-          return false;
+            return false;
         }
-    } catch (PDOException $e){
+    } catch (PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
     }
     $conn = null;
-  }
 }
+
 
 function loginData($user, $pass){
     require_once("dtbconnection.php");
