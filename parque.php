@@ -33,6 +33,13 @@
       </form>
     </div>
     <div id="article_main_content">
+    <?php
+    if(!empty($_SESSION['user']) && !empty($_SESSION['id'])){
+        ?>
+        <img id="article_main_content_edit" onclick="window.location='editParque.php?id_parque=". $_GET['id_parque'] . " ' " width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/pencil--v1.png" alt="pencil--v1"/>
+        <?php
+        }
+    ?>
       <h1 id="article_main_content_title"><?php $contenidoParque["nombre"] ?></h1>
       <?php
         if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
