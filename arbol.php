@@ -32,6 +32,13 @@
         alt="English"></button>
       </form>
     </div>
+    <?php
+        if(!empty($_SESSION['user']) && !empty($_SESSION['id'])){
+            ?>
+            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/pencil--v1.png" alt="pencil--v1"/>
+            <?php
+        }
+    ?>
     <div id="article_main_content">
       <h1 id="article_main_content_title"><?php $contenidoParque["nombre"] ?></h1>
       <?php
