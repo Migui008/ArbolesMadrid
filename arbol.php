@@ -74,11 +74,15 @@
                 echo "<h4 class='article_main_sidebar_content_text'>".$contenidoArbol['familia']."</h4>";
                 echo "<h4 class='article_main_sidebar_content_title'>Clase</h4>";
                 echo "<h4 class='article_main_sidebar_content_text'>".$contenidoArbol['clase']."</h4>";
+                echo "<h4 class='article_main_sidebar_content_title'>Nombre científico</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoArbol['nombre_cientifico']."</h4>";
             } elseif ($_POST['lang'] == 'en') {
                 echo "<h4 class='article_main_sidebar_content_title'>Family</h4>";
                 echo "<h4 class='article_main_sidebar_content_text'>".$contenidoArbol['familia']."</h4>";
                 echo "<h4 class='article_main_sidebar_content_title'>Class</h4>";
                 echo "<h4 class='article_main_sidebar_content_text'>".$contenidoArbol['clase']."</h4>";
+                echo "<h4 class='article_main_sidebar_content_title'>Scientific name</h4>";
+                echo "<h4 class='article_main_sidebar_content_text'>".$contenidoArbol['nombre_cientifico']."</h4>";
             }
             ?>
         </div>
