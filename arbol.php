@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
   	<link rel="icon" type="image/png" href="icono.png">
     <?php require_once('functions.php')?>
     <?php require_once('header.php')?>
+  	
     <?php
         if(isset($_GET["id_arbol"])){
             $contenidoArbol = loadArbolData($_GET["id_arbol"]);
@@ -16,7 +18,6 @@
     <title><?php echo $contenidoArbol['nombre']; ?></title>
 </head>
 <body>
-  
   <div id="article_main">
     <div class="languageSwitcher">
       <form class="langForm" id="langForm" action="" method="post">
@@ -34,7 +35,6 @@
     </div>
     <div id="article_main_content">
     <?php
-	session_start();
 	if (!empty($_SESSION['user']) && !empty($_SESSION['id'])) {
     	?>
     	<img 
