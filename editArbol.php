@@ -99,7 +99,7 @@
           echo "<p class='edit_main_form_input_paragraph'>Número</p>";
           echo "<input class='edit_main_form_input_number' type='number' min='1' value='". $textoSeccion['numero'] ."' name='numero".$textoSeccion['numero']."'>";
           echo "<p class='edit_main_form_input_paragraph'>Titulo</p>";
-          echo "<input class='edit_main_form_input' type='text' value='". $textoSeccion['titulo'] ." name='titulo".$textoSeccion['numero']."' >";
+          echo "<input class='edit_main_form_input' type='text' value='". $textoSeccion['titulo'] ."' name='titulo".$textoSeccion['numero']."' >";
           echo "<p class='edit_main_form_input_paragraph'>Titulo inglés</p>";
           echo "<input class='edit_main_form_input' type='text' value='". $textoSeccion['titulo_en'] ."' name='titulo_en".$textoSeccion['numero']."' >";
           echo "<p class='edit_main_form_input_paragraph'>Texto</p>";
