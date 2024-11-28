@@ -12,7 +12,71 @@
             $contenidoArbol = loadArbolData($_GET["id_arbol"]);
             $textoArbol = loadTextArbol($_GET["id_arbol"]);
         }    
-        ?>
+    ?>
+
+    <?php
+    require_once("dtbconnection.php");
+    global $conn;
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["id_arbol"])) {
+        $id_arbol = intval($_GET["id_arbol"]);
+
+        try {
+            $updateArbolQuery = "
+                UPDATE arboles 
+                SET 
+                    nombre = :nombre,
+                    nombre_cientifico = :nombre_cientifico,
+                    familia = :familia,
+                    clase = :clase
+                WHERE id_arbol = :id_arbol;
+            ";
+            $stmtArbol = $conn->prepare($updateArbolQuery);
+            $stmtArbol->bindParam(':nombre', $_POST['nombre'], PDO::PARAM_STR);
+            $stmtArbol->bindParam(':nombre_cientifico', $_POST['nombreCien'], PDO::PARAM_STR);
+            $stmtArbol->bindParam(':familia', $_POST['familia'], PDO::PARAM_STR);
+            $stmtArbol->bindParam(':clase', $_POST['clase'], PDO::PARAM_STR);
+            $stmtArbol->bindParam(':id_arbol', $id_arbol, PDO::PARAM_INT);
+
+            $stmtArbol->execute();
+
+            $updateContenidoQuery = "
+                UPDATE contenido 
+                SET 
+                    titulo = :titulo,
+                    titulo_en = :titulo_en,
+                    texto = :texto,
+                    texto_en = :texto_en
+                WHERE 
+                    id_referencia_a = :id_referencia_a
+                    AND numero = :numero;
+            ";
+            $stmtContenido = $conn->prepare($updateContenidoQuery);
+
+            foreach ($_POST as $key => $value) {
+                if (preg_match('/^numero(\d+)$/', $key, $matches)) {
+                    $numero = intval($matches[1]);
+
+                    $titulo = $_POST["titulo$numero"] ?? '';
+                    $titulo_en = $_POST["titulo_en$numero"] ?? '';
+                    $texto = $_POST["texto$numero"] ?? '';
+                    $texto_en = $_POST["texto_en$numero"] ?? '';
+
+                    $stmtContenido->bindParam(':titulo', $titulo, PDO::PARAM_STR);
+                    $stmtContenido->bindParam(':titulo_en', $titulo_en, PDO::PARAM_STR);
+                    $stmtContenido->bindParam(':texto', $texto, PDO::PARAM_STR);
+                    $stmtContenido->bindParam(':texto_en', $texto_en, PDO::PARAM_STR);
+                    $stmtContenido->bindParam(':id_referencia_a', $id_arbol, PDO::PARAM_INT);
+                    $stmtContenido->bindParam(':numero', $numero, PDO::PARAM_INT);
+
+                    $stmtContenido->execute();
+                }
+            }
+        } catch (PDOException $e) {
+            echo "Error al actualizar: " . $e->getMessage();
+        }
+    }
+    ?>
     <title><?php echo $contenidoArbol['nombre']; ?> editor</title>
 </head>
 <body>
@@ -39,14 +103,24 @@
           echo "<p class='edit_main_form_input_paragraph'>Texto inglés</p>";
           echo "<textarea class='edit_main_form_input_textarea' rows='20' cols='30' name='texto_en".$textoSeccion['numero']."' >". $textoSeccion['texto_en'] ."</textarea>";
         }
-
-      foreach($textoArbol as $checknumero){
-        if($_POST['numero'.$checkNumero['numero']] != $checkNumero['numero'] ){
-        
-        }
-      }
       ?>
     </form>
   </div>
+    <script>
+    document.getElementById('edit_main_form').addEventListener('submit', function(event) {
+        const inputs = document.querySelectorAll('.edit_main_form_input_number');
+        const numeros = Array.from(inputs).map(input => parseInt(input.value, 10));
+
+        numeros.sort((a, b) => a - b);
+
+        for (let i = 0; i < numeros.length; i++) {
+            if (numeros[i] !== i + 1) {
+                alert(`Los números deben ser consecutivos y empezar desde 1.\nRevisa la posición: ${i + 1}`);
+                event.preventDefault(); 
+                return;
+            }
+        }
+    });
+</script>
 </body>
 </html>
