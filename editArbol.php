@@ -15,13 +15,17 @@
     ?>
 
     <?php
-    require_once("dtbconnection.php");
-    global $conn;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["id_arbol"])) {
+        require_once("dtbconnection.php");
+        global $conn;
         $id_arbol = intval($_GET["id_arbol"]);
 
         try {
+            if (!isset($_POST['nombre'], $_POST['nombreCien'], $_POST['familia'], $_POST['clase'])) {
+                throw new Exception('Error: Faltan datos en la solicitud POST.');
+            }
+
             $updateArbolQuery = "
                 UPDATE arboles 
                 SET 
@@ -37,7 +41,6 @@
             $stmtArbol->bindParam(':familia', $_POST['familia'], PDO::PARAM_STR);
             $stmtArbol->bindParam(':clase', $_POST['clase'], PDO::PARAM_STR);
             $stmtArbol->bindParam(':id_arbol', $id_arbol, PDO::PARAM_INT);
-
             $stmtArbol->execute();
 
             $updateContenidoQuery = "
@@ -56,7 +59,6 @@
             foreach ($_POST as $key => $value) {
                 if (preg_match('/^numero(\d+)$/', $key, $matches)) {
                     $numero = intval($matches[1]);
-
                     $titulo = $_POST["titulo$numero"] ?? '';
                     $titulo_en = $_POST["titulo_en$numero"] ?? '';
                     $texto = $_POST["texto$numero"] ?? '';
@@ -68,22 +70,24 @@
                     $stmtContenido->bindParam(':texto_en', $texto_en, PDO::PARAM_STR);
                     $stmtContenido->bindParam(':id_referencia_a', $id_arbol, PDO::PARAM_INT);
                     $stmtContenido->bindParam(':numero', $numero, PDO::PARAM_INT);
-
                     $stmtContenido->execute();
                 }
             }
         } catch (PDOException $e) {
             echo "Error al actualizar: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
     ?>
+
     <title><?php echo $contenidoArbol['nombre']; ?> editor</title>
 </head>
 <body>
   <div id="edit_main">
     <form id="edit_main_form">
       <label class="edit_main_form_label" for="arbolName" name="nombre">Nombre</label>
-      <input class="edit_main_form_input" id="arbolName" type="text" value="<?php echo $contenidoArbol['nombre'];" ?> >
+      <input class="edit_main_form_input" id="arbolName" type="text" value="<?php echo $contenidoArbol['nombre']; ?>" >
       <label class="edit_main_form_label" for="nombreCientifico" name="nombreCien">Nombre científico</label>
       <input class="edit_main_form_input" id="nombreCientifico" type="text" value="<?php echo $contenidoArbol['nombre_cientifico']; ?>" >
       <label class="edit_main_form_label" for="familia" name="familia">Familia</label>
