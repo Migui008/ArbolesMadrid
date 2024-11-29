@@ -108,6 +108,7 @@
           echo "<textarea class='edit_main_form_input_textarea' rows='20' cols='30' name='texto_en".$textoSeccion['numero']."' >". $textoSeccion['texto_en'] ."</textarea>";
         }
       ?>
+        <input id="edit_main_form_submit" type="submit" value="Editar">
     </form>
   </div>
     <script>
