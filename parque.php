@@ -39,7 +39,7 @@
     	?>
     	<img 
         	id="article_main_content_edit" 
-        	onclick="window.location='editArbol.php?id_arbol=<?php echo $_GET['id_arbol']; ?>'" 
+        	onclick="window.location='editParque.php?id_parque=<?php echo $_GET['id_parque']; ?>'" 
         	width="30" 
         	height="30" 
         	src="https://img.icons8.com/ios-glyphs/30/pencil--v1.png" 
