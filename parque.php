@@ -66,7 +66,9 @@
       ?>
     </div>
     <div id="article_main_sidebar">
-        <div id="article_main_sidebar_image"></div>
+        <div id="article_main_sidebar_image">
+		<img src="image/<?php echo $contenidoParque["nombre"];?>.png" alt="Imagen Parque">
+	</div>
         <div id="article_main_sidebar_map">
             <div id="map" style="height: 400px; width: 100%;"></div>
         </div>
