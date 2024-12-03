@@ -4,45 +4,6 @@ require_once('common_data.php');
 require_once('dtbconnection.php');
 
 global $conn;
-
-$parques_filter = [
-    "accesibilidad" => [
-        "tipo" => "checkbox",
-        "nombre" => "Accesibilidad",
-        "opciones" => [
-            [
-                "rango" => "Bus",
-                "condicion" => "p.transporte_bus IS NOT NULL"
-            ],
-            [
-                "rango" => "Metro",
-                "condicion" => "p.transporte_metro IS NOT NULL"
-            ],
-            [
-                "rango" => "RENFE",
-                "condicion" => "p.transporte_renfe IS NOT NULL"
-            ]
-        ]
-    ],
-    "visitas" => [
-        "tipo" => "radio",
-        "nombre" => "Visitas",
-        "opciones" => [
-            [
-                "rango" => "Menos de 50",
-                "condicion" => "p.visitas < 50"
-            ],
-            [
-                "rango" => "Entre 50 y 400",
-                "condicion" => "p.visitas >= 50 AND p.visitas <= 400"
-            ],
-            [
-                "rango" => "Más de 400",
-                "condicion" => "p.visitas > 400"
-            ]
-        ]
-    ]
-];
 ?>
 
 <!DOCTYPE html>
