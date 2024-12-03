@@ -61,37 +61,39 @@
             }
 
             // Si se ha enviado el formulario con un filtro, mostrar los resultados
-            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['filter']) && !empty($_GET['filter'])) {
-                $selectedFilter = $_GET['filter'];
-                $condition = "";
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $selectedFilter = $_GET['filter'] ?? null;
+                if ($selectedFilter && isset($parques_filter[$selectedFilter])) {
+                    $condition = "";
 
-                if ($selectedFilter == "accesibilidad" && isset($_POST[$selectedFilter])) {
-                    $conditionsArray = [];
-                    foreach ($_POST[$selectedFilter] as $selectedOption) {
+                    if ($selectedFilter == "accesibilidad" && isset($_POST[$selectedFilter])) {
+                        $conditionsArray = [];
+                        foreach ($_POST[$selectedFilter] as $selectedOption) {
+                            foreach ($parques_filter[$selectedFilter]['opciones'] as $opcion) {
+                                if ($opcion['rango'] == $selectedOption) {
+                                    $conditionsArray[] = $opcion['condicion'];
+                                }
+                            }
+                        }
+                        $condition = implode(" OR ", $conditionsArray);
+                    } elseif (isset($_POST[$selectedFilter])) {
                         foreach ($parques_filter[$selectedFilter]['opciones'] as $opcion) {
-                            if ($opcion['rango'] == $selectedOption) {
-                                $conditionsArray[] = $opcion['condicion'];
+                            if ($opcion['rango'] == $_POST[$selectedFilter]) {
+                                $condition = $opcion['condicion'];
+                                break;
                             }
                         }
                     }
-                    $condition = implode(" OR ", $conditionsArray);
-                } elseif (isset($_POST[$selectedFilter])) {
-                    foreach ($parques_filter[$selectedFilter]['opciones'] as $opcion) {
-                        if ($opcion['rango'] == $_POST[$selectedFilter]) {
-                            $condition = $opcion['condicion'];
-                            break;
+
+                    if (!empty($condition)) {
+                        $parques = getFilteredParques($condition);
+                        foreach ($parques as $parque) {
+                            echo "<a href='parque.php?id_parque=" . $parque['id_parque'] . "' class='parques_main_enlaces_link'>" . htmlspecialchars($parque['nombre']) . "</a><br>";
                         }
                     }
                 }
-
-                if (!empty($condition)) {
-                    $parques = getFilteredParques($condition);
-                    foreach ($parques as $parque) {
-                        echo "<a href='parque.php?id_parque=" . $parque['id_parque'] . "' class='parques_main_enlaces_link'>" . htmlspecialchars($parque['nombre']) . "</a><br>";
-                    }
-                }
             } else {
-                // Mostrar todos los parques si no hay filtro
+                // Mostrar todos los parques si no se aplica ningún filtro
                 $parques = getAllParques();
                 foreach ($parques as $parque) {
                     echo "<a href='parque.php?id_parque=" . $parque['id_parque'] . "' class='parques_main_enlaces_link'>" . htmlspecialchars($parque['nombre']) . "</a><br>";
