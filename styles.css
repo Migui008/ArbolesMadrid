@@ -103,48 +103,53 @@ html, body {
 
 #index_main {
     display: flex;
-    justify-content: space-between; /* Separar los elementos */
+    flex-direction: column; /* Organiza bloques principales en columna */
     height: 100%; /* Ocupa toda la altura */
-    width: 100vw;
-    padding: 20px;
+    width: 100vw; /* Ocupa todo el ancho */
     background-color: #ffffff;
 }
 
 #index_main_arboles, #index_main_parques {
-    width: 20%;
-    height: 30%;
-    padding: 20px;
-    margin: 10px;
-    border: 2px solid ;
-    border-radius: 10px; /* Aplica redondeo tanto al borde como al contenido */
-    background-color: lightgray; /* Fondo visible para ver el redondeo */
-    overflow: hidden; /* Esto asegura que el contenido respete el redondeo */
+    width: 48%; /* Ocupa casi la mitad del ancho */
+    height: 100%; /* Ocupa todo el alto del contenedor superior */
+    margin: 10px; /* Espaciado entre los elementos */
+    border: 2px solid;
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: lightgray; /* Fondo visible */
+    overflow: hidden; /* Respeta los bordes redondeados */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    text-align: center; /* Centra el texto */
 }
 
+#index_main_bibliografia {
+    width: 100%; /* Ocupa todo el ancho */
+    height: 20%; /* Ajusta la altura de la sección inferior */
+    min-height: 20px; /* Asegura visibilidad mínima */
+    background-color: chocolate; /* Fondo distintivo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-#index_main_arboles h2, #index_main_parques h2{
+/* Estilos para los textos */
+#index_main_arboles h2, #index_main_parques h2 {
     color: burlywood;
     font-size: 2em;
 }
 
-.index_main_arboles, .index_main_parques{
+.index_main_arboles, .index_main_parques {
     text-decoration: none;
     color: inherit;
     text-transform: capitalize;
 }
 
-.index_main_arboles:hover , .index_main_parques:hover{
+.index_main_arboles:hover, .index_main_parques:hover {
     cursor: pointer;
     color: #007BFF;
 }
-
-#index_main_bibliografía{
-    width: 100%;
-    height: 10%;
-    min-height: 20px;
-    background-color: chocolate;
-}
-
 /* Medidas responsivas */
 @media (max-width: 768px) {
     #header {
