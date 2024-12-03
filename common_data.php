@@ -35,15 +35,15 @@ $parques_filter = [
         "opciones" => [
             [
                 "rango" => "Bus",
-                "condicion" => "p.transporte_bus != null"
+                "condicion" => "p.transporte_bus IS NOT NULL"
             ],
             [
                 "rango" => "Metro",
-                "condicion" => "p.transporte_metro != null"
+                "condicion" => "p.transporte_metro IS NOT NULL"
             ],
             [
                 "rango" => "RENFE",
-                "condicion" => "p.transporte_renfe != null"
+                "condicion" => "p.transporte_renfe IS NOT NULL"
             ]
         ]
     ],
