@@ -210,6 +210,22 @@ function getAllParques(){
     $conn = null;
 }
 
+function getFilteredParques($condition) {
+    require_once("dtbconnection.php");
+    global $conn;
+
+    try {
+        $sqlFilteredParques = "SELECT p.id_parque, p.nombre FROM parques a WHERE $condition";
+        $stmt = $conn->prepare($sqlFilteredParques);
+        $stmt->execute();
+        $parques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $parques;
+    } catch (PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
+
 function getAllArboles(){
     require_once("dtbconnection.php");
     global $conn; 
@@ -224,6 +240,22 @@ function getAllArboles(){
 
         return $arboles;
     } catch (PDOException $e){
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    $conn = null;
+}
+
+function getFilteredArboles($condition) {
+    require_once("dtbconnection.php");
+    global $conn;
+
+    try {
+        $sqlFilteredArboles = "SELECT a.id_arbol, a.nombre FROM arboles a WHERE $condition";
+        $stmt = $conn->prepare($sqlFilteredArboles);
+        $stmt->execute();
+        $arboles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $arboles;
+    } catch (PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
     }
     $conn = null;
