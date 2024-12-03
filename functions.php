@@ -215,7 +215,7 @@ function getFilteredParques($condition) {
     global $conn;
 
     try {
-        $sqlFilteredParques = "SELECT p.id_parque, p.nombre FROM parques a WHERE $condition";
+        $sqlFilteredParques = "SELECT p.id_parque, p.nombre FROM parques p WHERE " . $condition . ";";
         $stmt = $conn->prepare($sqlFilteredParques);
         $stmt->execute();
         $parques = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -225,6 +225,7 @@ function getFilteredParques($condition) {
     }
     $conn = null;
 }
+
 
 function getAllArboles(){
     require_once("dtbconnection.php");
