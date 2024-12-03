@@ -178,7 +178,19 @@ html, body {
     margin-bottom: 20px;
 }
 
+#arboles_main_filter_form{
+    height: 10vh;
+    margin-bottom: 20px;
+}
+
 #arboles_main_form_select{
+    height: 100%;
+    width: 30%;
+    border-radius: 30px;
+    background-color: #FEFAE0;
+}
+
+#arboles_main_filter_form select{
     height: 100%;
     width: 30%;
     border-radius: 30px;
@@ -189,7 +201,15 @@ html, body {
     background-color: #EAECCC;
 }
 
+#arboles_main_filter_form select:hover{
+    background-color: #EAECCC;
+}
+
 #arboles_main_form_select:focus{
+    background-color: #EAECCC;
+}
+
+#arboles_main_filter_form select:focus{
     background-color: #EAECCC;
 }
 
@@ -201,18 +221,111 @@ html, body {
     border-color: #798645;
 }
 
+#arboles_main_filter_form input{
+    height: 100%;
+    width: 10%;
+    background-color: #A5B68D;
+    border-radius: 20px;
+    border-color: #798645;
+}
+
 #arboles_main_form input:hover{
+    background-color: #CBD2A4;
+}
+
+#arboles_main_filter_form input:hover{
     background-color: #CBD2A4;
 }
 
 .arboles_main_enlaces_link{
     text-decoration: none;
-    font-size: 1.3em;
+    font-size: 1.4em;
     margin-top: 10px;
     color: #CC9544;
 }
 
 .arboles_main_enlaces_link:hover{
+    color: #874C62;
+}
+
+#parques_main{
+    background-color: #F6FCDF;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+#parques_main_form{
+    height: 10vh;
+    margin-bottom: 20px;
+}
+
+#parques_main_filter_form{
+    height: 10vh;
+    margin-bottom: 20px;
+}
+
+#parques_main_form_select{
+    height: 100%;
+    width: 30%;
+    border-radius: 30px;
+    background-color: #FEFAE0;
+}
+
+#parques_main_filter_form select{
+    height: 100%;
+    width: 30%;
+    border-radius: 30px;
+    background-color: #FEFAE0;
+}
+
+#parques_main_form_select:hover{
+    background-color: #EAECCC;
+}
+
+#parques_main_filter_form select:hover{
+    background-color: #EAECCC;
+}
+
+#parques_main_form_select:focus{
+    background-color: #EAECCC;
+}
+
+#parques_main_filter_form select:focus{
+    background-color: #EAECCC;
+}
+
+#parques_main_form input{
+    height: 100%;
+    width: 10%;
+    background-color: #A5B68D;
+    border-radius: 20px;
+    border-color: #798645;
+}
+
+#parques_main_filter_form input{
+    height: 100%;
+    width: 10%;
+    background-color: #A5B68D;
+    border-radius: 20px;
+    border-color: #798645;
+}
+
+#parques_main_form input:hover{
+    background-color: #CBD2A4;
+}
+
+#parques_main_filter_form input:hover{
+    background-color: #CBD2A4;
+}
+
+.parques_main_enlaces_link{
+    text-decoration: none;
+    font-size: 1.4em;
+    margin-top: 10px;
+    color: #CC9544;
+}
+
+.parques_main_enlaces_link:hover{
     color: #874C62;
 }
 
