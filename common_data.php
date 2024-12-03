@@ -32,15 +32,15 @@ $parques_filter=[
       "tipo" => "checkbox",
       "opciones" => [
         [
-            "transporte" => "Bus",
+            "rango" => "Bus",
             "condicion" => "p.transporte_bus != null"
         ],
         [
-            "transporte" => "Metro",
+            "rango" => "Metro",
             "condicion" => "p.transporte_metro != null"
         ],
         [
-            "transporte" => "RENFE",
+            "rango" => "RENFE",
             "condicion" => "p.transporte_renfe != null"
         ]
       ]
