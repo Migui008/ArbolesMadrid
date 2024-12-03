@@ -71,7 +71,7 @@ html, body {
 
 #index_container {
     display: flex;
-    height: calc(100% - 15vh);
+    height: 100%;
 }
 
 #sidebar {
@@ -103,39 +103,45 @@ html, body {
 
 #index_main {
     display: flex;
-    flex-direction: column; /* Organiza bloques principales en columna */
-    height: 100%; /* Ocupa toda la altura */
-    width: 100vw; /* Ocupa todo el ancho */
+    flex-direction: column; /* Estructura en columna para los bloques principales */
+    height: 100%; /* Usa toda la altura de la pantalla */
+    width: 100%; /* Usa todo el ancho de la pantalla */
     background-color: #ffffff;
 }
 
-#index_main_arboles, #index_main_parques {
-    width: 48%; /* Ocupa casi la mitad del ancho */
-    height: 100%; /* Ocupa todo el alto del contenedor superior */
-    margin: 10px; /* Espaciado entre los elementos */
-    border: 2px solid;
-    border-radius: 10px; /* Bordes redondeados */
-    background-color: lightgray; /* Fondo visible */
-    overflow: hidden; /* Respeta los bordes redondeados */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center; /* Centra verticalmente el contenido */
-    text-align: center; /* Centra el texto */
+#index_main_top {
+    display: flex; /* Fila para árboles y parques */
+    justify-content: space-between; /* Espaciado entre elementos */
+    height: 30%; /* 80% de la altura del contenedor principal */
+    width: 100%; /* Ancho completo */
+    padding: 10px;
+    box-sizing: border-box; /* Incluye padding en el tamaño */
 }
 
-#index_main_bibliografia {
-    width: 100%; /* Ocupa todo el ancho */
-    height: 20%; /* Ajusta la altura de la sección inferior */
-    min-height: 20px; /* Asegura visibilidad mínima */
-    background-color: chocolate; /* Fondo distintivo */
-    display: flex;
+#index_main_arboles, #index_main_parques {
+    width: 48%;
+    height: 100%;
+    border: 2px solid;
+    border-radius: 10px; 
+    background-color: lightgray; 
     justify-content: center;
     align-items: center;
     text-align: center;
+    box-sizing: border-box;
+    display: flexbox;
+}
+
+#index_main_bibliografia {
+    width: 100%;
+    height: 70%; /* 20% de la altura del contenedor principal */
+    background-color: chocolate; /* Fondo distintivo */
+    padding-left: 10%;
+    padding-top: 5%;
 }
 
 /* Estilos para los textos */
 #index_main_arboles h2, #index_main_parques h2 {
+    align-self: start;
     color: burlywood;
     font-size: 2em;
 }
@@ -144,12 +150,16 @@ html, body {
     text-decoration: none;
     color: inherit;
     text-transform: capitalize;
+    padding-bottom: 10px;
+    line-height: 2;
 }
 
 .index_main_arboles:hover, .index_main_parques:hover {
     cursor: pointer;
     color: #007BFF;
 }
+
+
 /* Medidas responsivas */
 @media (max-width: 768px) {
     #header {
