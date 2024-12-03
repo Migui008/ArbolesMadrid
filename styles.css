@@ -81,7 +81,11 @@ html, body {
 }
 
 #sidebar_mostVisited{
-    padding-top: 30px;
+    padding-top: 20px;
+}
+
+#sidebar_mostVisited_title{
+    padding-bottom: 20px;
 }
 
 .sidebar_mostVisited_link{
@@ -89,6 +93,7 @@ html, body {
     color: inherit;
     display: block;
     margin-bottom: 15px;
+    padding-left: 5px;
 }
 
 #index_main {
