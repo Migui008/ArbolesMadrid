@@ -75,7 +75,7 @@
                 echo "<h4>Related parks</h4>";
             }
             foreach($contenidoArbol['parques'] as $parque){
-                echo "<a class='article_main_sidebar_content_link' href='parque.php?id_parque=".$parque["id_parque"]."'>".$parque["nombre"]."</a>";
+                echo "<a class='article_main_sidebar_content_link' href='parque.php?id_parque=".$parque["id_parque"]."'>".$parque["nombre"]."</a><br>";
             }
             if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
                 echo "<h4 class='article_main_sidebar_content_title'>Familia</h4>";
