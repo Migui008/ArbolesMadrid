@@ -3,7 +3,7 @@ html, body {
     margin: 0;
 }
 
-header {
+#header {
     width: 100%;
     height: 15vh;
     background-color: #f4f4f4;
@@ -12,14 +12,65 @@ header {
     justify-content: space-between;
 }
 
+#header_icon{
+    height: 100%;
+}
+
+#header_icon_image{
+    height: 100%;
+    width:  100%;
+}
+
+#header_options{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#header_options_arboles, #header_options_parques {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header_options_arboles:hover, #header_options_parques:hover {
+    background-color: #e0e0e0; /* Color de fondo al pasar el ratón */
+}
+
+#header_options_arboles_link, #header_options_parques_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit; 
+    width: 80%;
+    height: 80%; 
+}
+
+#header_options_arboles_link:hover, #header_options_parques_link:hover {
+    color: #007BFF; /* Color del texto al pasar el ratón (opcional) */
+}
+
+#header_login{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 @media (max-width: 768px) {
-    header {
+    #header {
         height: 10vh;
     }
 }
 
 @media (max-width: 480px) {
-    header {
+    #header {
         height: 8vh;
     }
 }
