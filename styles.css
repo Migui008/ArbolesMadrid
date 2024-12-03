@@ -6,7 +6,7 @@ html, body {
 #header {
     width: 100%;
     height: 15vh;
-    background-color: #f4f4f4;
+    background-color: #D3F1DF;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,14 +45,15 @@ html, body {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: inherit;
+    color: #5A6C57;
     width: 80%;
     height: 80%;
+    border-radius: 10px;
 }
 
 #header_options_arboles_link:hover, #header_options_parques_link:hover {
-    background-color: #e0e0e0;
-    color: #007BFF;
+    background-color: #85A98F;
+    color: #525B44; 
 }
 
 #header_login {
@@ -61,11 +62,12 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #5A6C57;
 }
 
 #header_login:hover {
-    background-color: #e0e0e0;
-    color: #007BFF;
+    background-color: #85A98F;
+    color: #525B44;
     cursor: pointer;
 }
 
@@ -77,11 +79,17 @@ html, body {
 #sidebar {
     width: 10vw;
     height: 100%;
-    background-color: #f0f0f0;
+    background-color: #697565;
+    display: flexbox;
 }
 
 #sidebar_mostVisited{
+    width: 90%;
     padding-top: 20px;
+    margin-top: 20px;
+    background-color: #ECDFCC;
+    border-radius: 10px;
+    margin-left: 4px;
 }
 
 #sidebar_mostVisited_title{
@@ -103,19 +111,19 @@ html, body {
 
 #index_main {
     display: flex;
-    flex-direction: column; /* Estructura en columna para los bloques principales */
-    height: 100%; /* Usa toda la altura de la pantalla */
-    width: 100%; /* Usa todo el ancho de la pantalla */
-    background-color: #ffffff;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: #F6FCDF;
 }
 
 #index_main_top {
-    display: flex; /* Fila para árboles y parques */
-    justify-content: space-between; /* Espaciado entre elementos */
-    height: 30%; /* 80% de la altura del contenedor principal */
-    width: 100%; /* Ancho completo */
+    display: flex;
+    justify-content: space-between;
+    height: 30%;
+    width: 100%;
     padding: 10px;
-    box-sizing: border-box; /* Incluye padding en el tamaño */
+    box-sizing: border-box;
 }
 
 #index_main_arboles, #index_main_parques {
@@ -123,7 +131,7 @@ html, body {
     height: 100%;
     border: 2px solid;
     border-radius: 10px; 
-    background-color: lightgray; 
+    background-color: #859F3D; 
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -133,8 +141,8 @@ html, body {
 
 #index_main_bibliografia {
     width: 100%;
-    height: 70%; /* 20% de la altura del contenedor principal */
-    background-color: chocolate; /* Fondo distintivo */
+    height: 70%;
+    background-color: #F6FCDF;
     padding-left: 10%;
     padding-top: 5%;
 }
@@ -142,7 +150,7 @@ html, body {
 /* Estilos para los textos */
 #index_main_arboles h2, #index_main_parques h2 {
     align-self: start;
-    color: burlywood;
+    color: #31511E;
     font-size: 2em;
 }
 
@@ -156,7 +164,7 @@ html, body {
 
 .index_main_arboles:hover, .index_main_parques:hover {
     cursor: pointer;
-    color: #007BFF;
+    color: #1A1A19;
 }
 
 
