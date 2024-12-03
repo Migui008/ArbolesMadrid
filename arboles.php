@@ -39,9 +39,12 @@ $arboles_filter['familia']['opciones'] = getOptionsForSelect('familia', 'arboles
             echo "<form method='post' action='".$_SERVER['PHP_SELF']."' id='arboles_main_filter_form'>";
             
             if ($arboles_filter[$selected_filter]['tipo'] == "select") {
+                // Imprimir las opciones de clase y familia
+                echo "<select name='".$selected_filter."'>";
                 foreach ($arboles_filter[$selected_filter]['opciones'] as $opcion) {
                     echo "<option value='".$opcion[$selected_filter]."'>".$opcion[$selected_filter]."</option>";
                 }
+                echo "</select>";
             } elseif ($arboles_filter[$selected_filter]['tipo'] == "radio") {
                 foreach ($arboles_filter[$selected_filter]['opciones'] as $opcion) {
                     echo "<input type='radio' name='visitas' value='".$opcion['rango']."'> ".$opcion['rango']."<br>";
@@ -52,6 +55,7 @@ $arboles_filter['familia']['opciones'] = getOptionsForSelect('familia', 'arboles
             echo "</form>";
         }
 
+        // Lógica de filtrado y mostrar resultados
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $where_clauses = [];
             
