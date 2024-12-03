@@ -48,7 +48,7 @@
     <?php
 	}
 	?>
-      <h1 id="article_main_content_title"><?php $contenidoParque["nombre"] ?></h1>
+      <h1 id="article_main_content_title"><?php echo $contenidoParque["nombre"]; ?></h1>
       <?php
         if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
           foreach($textoParque as $textoSeccion){
