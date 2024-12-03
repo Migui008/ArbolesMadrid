@@ -31,6 +31,7 @@ $arboles_filter = [
 $parques_filter = [
     "accesibilidad" => [
         "tipo" => "checkbox",
+        "nombre" => "Accesibilidad",
         "opciones" => [
             [
                 "rango" => "Bus",
@@ -48,6 +49,7 @@ $parques_filter = [
     ],
     "visitas" => [
         "tipo" => "radio",
+        "nombre" => "Visitas",
         "opciones" => [
             [
                 "rango" => "Menos de 50",
