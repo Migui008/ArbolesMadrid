@@ -102,17 +102,25 @@ html, body {
 }
 
 #index_main {
-    flex-grow: 1; 
-    height: 100%;
-    background-color: #ffffff; 
     display: flex;
+    justify-content: space-between; /* Separar los elementos */
+    height: 100%; /* Ocupa toda la altura */
+    width: 100vw;
+    padding: 20px;
+    background-color: #ffffff;
 }
 
-#index_main_arboles, #index_main_parques{
-    width: 100%;
-    padding-left:20px; 
-    padding-top: 20px;
+#index_main_arboles, #index_main_parques {
+    width: 20%;
+    height: 30%;
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid ;
+    border-radius: 10px; /* Aplica redondeo tanto al borde como al contenido */
+    background-color: lightgray; /* Fondo visible para ver el redondeo */
+    overflow: hidden; /* Esto asegura que el contenido respete el redondeo */
 }
+
 
 #index_main_arboles h2, #index_main_parques h2{
     color: burlywood;
@@ -122,11 +130,19 @@ html, body {
 .index_main_arboles, .index_main_parques{
     text-decoration: none;
     color: inherit;
+    text-transform: capitalize;
 }
 
 .index_main_arboles:hover , .index_main_parques:hover{
     cursor: pointer;
     color: #007BFF;
+}
+
+#index_main_bibliografía{
+    width: 100%;
+    height: 10%;
+    min-height: 20px;
+    background-color: chocolate;
 }
 
 /* Medidas responsivas */
