@@ -33,7 +33,10 @@
         }
         ?>
       </div>
-      <div id="index_main_bibliografia"></div>
+      <div id="index_main_bibliografia">
+        <h2 class="index_main_bibliografia_title">Autor:</h2>
+        <p class="index_main_bibliografia_text">Miguel Salvador Rioja</p>
+      </div>
     </div>
   </div>
 </body>
