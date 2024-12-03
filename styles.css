@@ -126,6 +126,7 @@ html, body {
 
 .index_main_arboles:hover , .index_main_parques:hover{
     cursor: pointer;
+    color: #007BFF;
 }
 
 /* Medidas responsivas */
