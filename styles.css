@@ -21,6 +21,10 @@ html, body {
     width:  100%;
 }
 
+#header_icon_image:hover{
+    cursor: pointer;
+}
+
 #header_options{
     height: 100%;
     width: 60%;
@@ -48,7 +52,7 @@ html, body {
 
 #header_options_arboles_link:hover, #header_options_parques_link:hover {
     background-color: #e0e0e0;
-    color: #007BFF; /* Color del texto al pasar el ratón (opcional) */
+    color: #007BFF;
 }
 
 #header_login{
@@ -57,6 +61,12 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#header_login:hover{
+    background-color: #e0e0e0;
+    color: #007BFF;
+    cursor: pointer;
 }
 
 
