@@ -97,10 +97,35 @@ html, body {
     padding-left: 5px;
 }
 
+.sidebar_mostVisited_link:hover{
+    color: #007BFF;
+}
+
 #index_main {
     flex-grow: 1; 
     height: 100%;
     background-color: #ffffff; 
+    display: flex;
+}
+
+#index_main_arboles, #index_main_parques{
+    width: 100%;
+    padding-left:20px; 
+    padding-top: 20px;
+}
+
+#index_main_arboles h2, #index_main_parques h2{
+    color: burlywood;
+    font-size: 2em;
+}
+
+.index_main_arboles, .index_main_parques{
+    text-decoration: none;
+    color: inherit;
+}
+
+.index_main_arboles:hover , .index_main_parques:hover{
+    cursor: pointer;
 }
 
 /* Medidas responsivas */
