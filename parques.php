@@ -4,6 +4,10 @@ require_once('common_data.php');
 require_once('dtbconnection.php');
 
 global $conn;
+
+// Llenar las opciones de los selects de 'clase' y 'familia'
+$arboles_filter['clase']['opciones'] = getOptionsForSelect('clase', 'arboles');
+$arboles_filter['familia']['opciones'] = getOptionsForSelect('familia', 'arboles');
 ?>
 
 <!DOCTYPE html>
@@ -11,16 +15,16 @@ global $conn;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parques</title>
+    <title>Árboles</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <?php require_once('header.php'); ?>
-    <div id="parques_main">
-        <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="parques_main_form">
-            <select name="filter" id="parques_main_form_select">
+    <div id="arboles_main">
+        <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="arboles_main_form">
+            <select name="filter" id="arboles_main_form_select">
                 <?php 
-                foreach ($parques_filter as $filtro => $datos) {
+                foreach ($arboles_filter as $filtro => $datos) {
                     echo "<option value='".$filtro."'>".$datos['nombre']."</option>";
                 }
                 ?>
@@ -32,14 +36,14 @@ global $conn;
         if (isset($_GET['filter']) && !empty($_GET['filter'])) {
             $selected_filter = $_GET['filter'];
 
-            echo "<form method='post' action='".$_SERVER['PHP_SELF']."' id='parques_main_filter_form'>";
+            echo "<form method='post' action='".$_SERVER['PHP_SELF']."' id='arboles_main_filter_form'>";
             
-            if ($parques_filter[$selected_filter]['tipo'] == "checkbox") {
-                foreach ($parques_filter[$selected_filter]['opciones'] as $opcion) {
-                    echo "<input type='checkbox' name='accesibilidad[]' value='".$opcion['rango']."'> ".$opcion['rango']."<br>";
+            if ($arboles_filter[$selected_filter]['tipo'] == "select") {
+                foreach ($arboles_filter[$selected_filter]['opciones'] as $opcion) {
+                    echo "<option value='".$opcion[$selected_filter]."'>".$opcion[$selected_filter]."</option>";
                 }
-            } elseif ($parques_filter[$selected_filter]['tipo'] == "radio") {
-                foreach ($parques_filter[$selected_filter]['opciones'] as $opcion) {
+            } elseif ($arboles_filter[$selected_filter]['tipo'] == "radio") {
+                foreach ($arboles_filter[$selected_filter]['opciones'] as $opcion) {
                     echo "<input type='radio' name='visitas' value='".$opcion['rango']."'> ".$opcion['rango']."<br>";
                 }
             }
@@ -51,49 +55,45 @@ global $conn;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $where_clauses = [];
             
-            if (isset($_POST['accesibilidad']) && !empty($_POST['accesibilidad'])) {
-                $checkbox_conditions = [];
-                foreach ($parques_filter['accesibilidad']['opciones'] as $opcion) {
-                    if (in_array($opcion['rango'], $_POST['accesibilidad'])) {
-                        $checkbox_conditions[] = $opcion['condicion'];
-                    }
-                }
-                if (!empty($checkbox_conditions)) {
-                    $where_clauses[] = "(" . implode(' AND ', $checkbox_conditions) . ")";
-                }
+            if (isset($_POST['clase']) && !empty($_POST['clase'])) {
+                $where_clauses[] = "a.clase = '" . $_POST['clase'] . "'";
+            }
+
+            if (isset($_POST['familia']) && !empty($_POST['familia'])) {
+                $where_clauses[] = "a.familia = '" . $_POST['familia'] . "'";
             }
 
             if (isset($_POST['visitas']) && !empty($_POST['visitas'])) {
-                $visitas_condition = $parques_filter['visitas']['opciones'][array_search($_POST['visitas'], array_column($parques_filter['visitas']['opciones'], 'rango'))]['condicion'];
+                $visitas_condition = $arboles_filter['visitas']['opciones'][array_search($_POST['visitas'], array_column($arboles_filter['visitas']['opciones'], 'rango'))]['condicion'];
                 $where_clauses[] = $visitas_condition;
             }
 
-            $sql = "SELECT p.id_parque, p.nombre FROM parques p";
+            $sql = "SELECT a.id_arbol, a.nombre FROM arboles a";
             if (!empty($where_clauses)) {
                 $sql .= " WHERE " . implode(' AND ', $where_clauses);
             }
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            $parques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $arboles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($parques) {
-                foreach ($parques as $parque) {
-                    echo "<a href='parque.php?id_parque=".$parque['id_parque']."' class='parques_main_enlaces_link'>".$parque['nombre']."</a><br>";
+            if ($arboles) {
+                foreach ($arboles as $arbol) {
+                    echo "<a href='arbol.php?id_arbol=".$arbol['id_arbol']."' class='arboles_main_enlaces_link'>".$arbol['nombre']."</a><br>";
                 }
             } else {
-                echo "No se encontraron parques que coincidan con el filtro.";
+                echo "No se encontraron árboles que coincidan con el filtro.";
             }
         } else {
-            // Mostrar todos los parques por defecto al cargar la página
-            $parques = getAllParques(); // Asegúrate de que esta función está definida en functions.php y que devuelve todos los parques.
+            // Mostrar todos los árboles por defecto al cargar la página
+            $arboles = getAllArboles(); // Asegúrate de que esta función está definida en functions.php y que devuelve todos los árboles.
 
-            if ($parques) {
-                foreach ($parques as $parque) {
-                    echo "<a href='parque.php?id_parque=".$parque['id_parque']."' class='parques_main_enlaces_link'>".$parque['nombre']."</a><br>";
+            if ($arboles) {
+                foreach ($arboles as $arbol) {
+                    echo "<a href='arbol.php?id_arbol=".$arbol['id_arbol']."' class='arboles_main_enlaces_link'>".$arbol['nombre']."</a><br>";
                 }
             } else {
-                echo "No se encontraron parques.";
+                echo "No se encontraron árboles.";
             }
         }
         ?>
