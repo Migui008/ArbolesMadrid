@@ -1,13 +1,13 @@
 <?php
-// Incluir la conexión a la base de datos y funciones necesarias
-require_once('dtbconnection.php');
 require_once('functions.php');
 require_once('common_data.php');
+require_once('dtbconnection.php');
 
-// Obtener la lista de árboles sin filtrar al cargar la página inicialmente
-$arboles = getAllArboles();
+global $conn;
 
-// Mostrar los filtros en la página
+// Llenar las opciones de los selects de 'clase' y 'familia'
+$arboles_filter['clase']['opciones'] = getOptionsForSelect('clase', 'arboles');
+$arboles_filter['familia']['opciones'] = getOptionsForSelect('familia', 'arboles');
 ?>
 
 <!DOCTYPE html>
@@ -20,119 +20,80 @@ $arboles = getAllArboles();
 </head>
 <body>
     <?php require_once('header.php'); ?>
-
     <div id="arboles_main">
-        <!-- Formulario para seleccionar el tipo de filtro -->
-        <form method="get" action="<?php $_SERVER['PHP_SELF']; ?>" id="arboles_main_form">
+        <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="arboles_main_form">
             <select name="filter" id="arboles_main_form_select">
                 <?php 
-                foreach($arboles_filter as $filtro => $datos){
+                foreach ($arboles_filter as $filtro => $datos) {
                     echo "<option value='".$filtro."'>".$datos['nombre']."</option>";
                 }
                 ?>
             </select>
-            <input id="arboles_main_form_submit" type="submit" value="Filtrar">
+            <input type="submit" value="Filtrar">
         </form>
 
         <?php
-        // Si se ha enviado un filtro, mostrar el segundo formulario para aplicar el filtro
         if (isset($_GET['filter']) && !empty($_GET['filter'])) {
-            $selectedFilter = $_GET['filter'];
-            ?>
-            <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>" id="arboles_main_enlaces_form">
-                <?php
-                if (isset($arboles_filter[$selectedFilter])) {
-                    $tipoFiltro = $arboles_filter[$selectedFilter]['tipo'];
+            $selected_filter = $_GET['filter'];
 
-                    if ($tipoFiltro == 'select') {
-                        echo "<select name='$selectedFilter' id='arboles_main_enlaces_form_select'>";
-                        foreach ($arboles_filter[$selectedFilter] as $key => $value) {
-                            if ($key !== 'tipo' && $key !== 'nombre') {
-                                echo "<option value='$key'>$key</option>";
-                            }
-                        }
-                        echo "</select>";
-                    } elseif ($tipoFiltro == 'radio') {
-                        foreach ($arboles_filter[$selectedFilter]['opciones'] as $opcion) {
-                            echo "<input type='radio' name='$selectedFilter' value='" . htmlspecialchars($opcion['rango']) . "'>" . htmlspecialchars($opcion['rango']) . "<br>";
-                        }
-                    } elseif ($tipoFiltro == 'checkbox') {
-                        foreach ($arboles_filter[$selectedFilter]['opciones'] as $opcion) {
-                            echo "<input type='checkbox' name='" . $selectedFilter . "[]' value='" . htmlspecialchars($opcion['rango']) . "'>" . htmlspecialchars($opcion['rango']) . "<br>";
-                        }
-                    }
+            echo "<form method='post' action='".$_SERVER['PHP_SELF']."' id='arboles_main_filter_form'>";
+            
+            if ($arboles_filter[$selected_filter]['tipo'] == "select") {
+                foreach ($arboles_filter[$selected_filter]['opciones'] as $opcion) {
+                    echo "<option value='".$opcion[$selected_filter]."'>".$opcion[$selected_filter]."</option>";
                 }
-                ?>
-                <input type="submit" value="Filtrar">
-            </form>
-            <?php
+            } elseif ($arboles_filter[$selected_filter]['tipo'] == "radio") {
+                foreach ($arboles_filter[$selected_filter]['opciones'] as $opcion) {
+                    echo "<input type='radio' name='visitas' value='".$opcion['rango']."'> ".$opcion['rango']."<br>";
+                }
+            }
+
+            echo "<input type='submit' value='Filtrar'>";
+            echo "</form>";
         }
 
-        // Filtrar los árboles según los criterios seleccionados
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $query = "SELECT a.id_arbol, a.nombre FROM arboles a";
-            $params = [];
-            $condiciones = [];
-
-            // Revisión de filtros aplicados
-            foreach ($arboles_filter as $filter => $datos) {
-                if ($filter == 'visitas') {
-                    // Radio: tomar solo el valor seleccionado
-                    if (isset($_POST[$filter])) {
-                        foreach ($arboles_filter[$filter]['opciones'] as $opcion) {
-                            if ($opcion['rango'] === $_POST[$filter]) {
-                                $condiciones[] = $opcion['condicion'];
-                                break;
-                            }
-                        }
-                    }
-                } else {
-                    // Otros filtros (select o checkbox)
-                    if (isset($_POST[$filter]) && !empty($_POST[$filter])) {
-                        if ($datos['tipo'] == 'checkbox') {
-                            $checkboxConditions = [];
-                            foreach ($arboles_filter[$filter]['opciones'] as $opcion) {
-                                if (in_array($opcion['rango'], $_POST[$filter])) {
-                                    $checkboxConditions[] = $opcion['condicion'];
-                                }
-                            }
-                            if (!empty($checkboxConditions)) {
-                                $condiciones[] = '(' . implode(' OR ', $checkboxConditions) . ')';
-                            }
-                        } else {
-                            $selectedValue = $_POST[$filter];
-                            $condiciones[] = "a.$filter = :$filter";
-                            $params[":$filter"] = $selectedValue;
-                        }
-                    }
-                }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $where_clauses = [];
+            
+            if (isset($_POST['clase']) && !empty($_POST['clase'])) {
+                $where_clauses[] = "a.clase = '" . $_POST['clase'] . "'";
             }
 
-            // Agregar las condiciones a la consulta si existen
-            if (!empty($condiciones)) {
-                $query .= " WHERE " . implode(' AND ', $condiciones);
+            if (isset($_POST['familia']) && !empty($_POST['familia'])) {
+                $where_clauses[] = "a.familia = '" . $_POST['familia'] . "'";
             }
 
-            try {
-                $stmt = $conn->prepare($query);
-                $stmt->execute($params);
-
-                $arboles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo "Error de conexión: " . $e->getMessage();
+            if (isset($_POST['visitas']) && !empty($_POST['visitas'])) {
+                $visitas_condition = $arboles_filter['visitas']['opciones'][array_search($_POST['visitas'], array_column($arboles_filter['visitas']['opciones'], 'rango'))]['condicion'];
+                $where_clauses[] = $visitas_condition;
             }
 
-            if (empty($arboles)) {
-                echo "No se encontraron árboles que coincidan con el filtro.";
-            } else {
+            $sql = "SELECT a.id_arbol, a.nombre FROM arboles a";
+            if (!empty($where_clauses)) {
+                $sql .= " WHERE " . implode(' AND ', $where_clauses);
+            }
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $arboles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($arboles) {
                 foreach ($arboles as $arbol) {
-                    echo "<a href='arbol.php?id_arbol=" . $arbol['id_arbol'] . "' class='arboles_main_enlaces_link'>" . htmlspecialchars($arbol['nombre']) . "</a><br>";
+                    echo "<a href='arbol.php?id_arbol=".$arbol['id_arbol']."' class='arboles_main_enlaces_link'>".$arbol['nombre']."</a><br>";
                 }
+            } else {
+                echo "No se encontraron árboles que coincidan con el filtro.";
             }
         } else {
-            // Mostrar todos los árboles si no se ha enviado un filtro
-            foreach ($arboles as $arbol) {
-                echo "<a href='arbol.php?id_arbol=" . $arbol['id_arbol'] . "' class='arboles_main_enlaces_link'>" . htmlspecialchars($arbol['nombre']) . "</a><br>";
+            // Mostrar todos los árboles por defecto al cargar la página
+            $arboles = getAllArboles(); // Asegúrate de que esta función está definida en functions.php y que devuelve todos los árboles.
+
+            if ($arboles) {
+                foreach ($arboles as $arbol) {
+                    echo "<a href='arbol.php?id_arbol=".$arbol['id_arbol']."' class='arboles_main_enlaces_link'>".$arbol['nombre']."</a><br>";
+                }
+            } else {
+                echo "No se encontraron árboles.";
             }
         }
         ?>
