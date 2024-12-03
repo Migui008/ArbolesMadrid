@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-  	<link rel="icon" type="image/png" href="icono.png">
+    <link rel="icon" type="image/png" href="icono.png">
     <?php require_once('functions.php')?>
     <?php require_once('header.php')?>
   	
@@ -66,7 +66,9 @@
       ?>
     </div>
     <div id="article_main_sidebar">
-        <div id="article_main_sidebar_image"></div>
+        <div id="article_main_sidebar_image">
+		<img src="image/<?php echo $contenidoArbol["nombre"];?>.png" alt="Imagen Arbol">
+	</div>
         <div id="article_main_sidebar_content">
             <?php
             if (!isset($_POST['lang']) || $_POST['lang'] == 'es') {
