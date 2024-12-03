@@ -191,11 +191,11 @@ function loadTextArbol($arbol_id){
     $conn = null;
 }
 
-function getAllParques(){
+function getAllParques() {
     require_once("dtbconnection.php");
-    global $conn; 
+    global $conn;
 
-    try{
+    try {
         $sqlAllParques = "SELECT p.id_parque, p.nombre FROM parques p;";
 
         $stmt = $conn->prepare($sqlAllParques);
@@ -204,27 +204,52 @@ function getAllParques(){
         $parques = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $parques;
-    } catch (PDOException $e){
+    } catch (PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
     }
     $conn = null;
 }
 
-function getFilteredParques($condition) {
+
+function getFilteredParques($filterName, $conditionsArray) {
     require_once("dtbconnection.php");
     global $conn;
 
     try {
-        $sqlFilteredParques = "SELECT p.id_parque, p.nombre FROM parques p WHERE " . $condition . ";";
-        $stmt = $conn->prepare($sqlFilteredParques);
+        $query = "SELECT p.id_parque, p.nombre FROM parques p WHERE ";
+
+        // Crear la condición de la consulta con los filtros seleccionados
+        if ($filterName && isset($parques_filter[$filterName])) {
+            $filter = $parques_filter[$filterName];
+            if ($filter['tipo'] == 'select') {
+                $query .= $filter['opciones'][0]['condicion'] . " = :value";
+            } elseif ($filter['tipo'] == 'radio') {
+                $query .= implode(" OR ", array_map(function ($opcion) {
+                    return $opcion['condicion'];
+                }, $filter['opciones']));
+            } elseif ($filter['tipo'] == 'checkbox') {
+                $query .= implode(" OR ", array_map(function ($opcion) {
+                    return $opcion['condicion'];
+                }, $filter['opciones']));
+            }
+        }
+
+        $stmt = $conn->prepare($query);
+        // Bind values if needed for the query
+        if (!empty($conditionsArray)) {
+            $stmt->bindParam(':value', $conditionsArray[0]); // Example binding
+        }
+
         $stmt->execute();
         $parques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         return $parques;
     } catch (PDOException $e) {
         echo "Error de conexión: " . $e->getMessage();
     }
     $conn = null;
 }
+
 
 
 function getAllArboles(){
