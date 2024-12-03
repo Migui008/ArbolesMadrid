@@ -36,10 +36,6 @@ html, body {
     justify-content: center;
 }
 
-#header_options_arboles:hover, #header_options_parques:hover {
-    background-color: #e0e0e0; /* Color de fondo al pasar el ratón */
-}
-
 #header_options_arboles_link, #header_options_parques_link {
     display: flex;
     align-items: center;
@@ -51,6 +47,7 @@ html, body {
 }
 
 #header_options_arboles_link:hover, #header_options_parques_link:hover {
+    background-color: #e0e0e0;
     color: #007BFF; /* Color del texto al pasar el ratón (opcional) */
 }
 
