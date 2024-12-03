@@ -322,4 +322,17 @@ function loginVerification($user, $pass) {
     $conn = null;
 }
 
+function getOptionsForSelect($column, $table) {
+    global $conn;
+    $options = [];
+    try {
+        $sql = "SELECT DISTINCT $column FROM $table ORDER BY $column";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $options = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+    }
+    return $options;
+}
 ?>
