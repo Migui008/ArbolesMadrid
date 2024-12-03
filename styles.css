@@ -169,6 +169,7 @@ html, body {
 
 #arboles_main{
     background-color: #F6FCDF;
+    height: 100%;
     padding-top: 10px;
     padding-left: 15px;
 }
@@ -250,6 +251,7 @@ html, body {
 
 #parques_main{
     background-color: #F6FCDF;
+    height: 100%;
     padding-top: 10px;
     padding-left: 15px;
 }
