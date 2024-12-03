@@ -218,9 +218,10 @@ function getFilteredParques($filterName, $conditionsArray) {
     try {
         $query = "SELECT p.id_parque, p.nombre FROM parques p WHERE ";
 
-        // Crear la condición de la consulta con los filtros seleccionados
+        // Crear la condición de la consulta según el filtro seleccionado
         if ($filterName && isset($parques_filter[$filterName])) {
             $filter = $parques_filter[$filterName];
+
             if ($filter['tipo'] == 'select') {
                 $query .= $filter['opciones'][0]['condicion'] . " = :value";
             } elseif ($filter['tipo'] == 'radio') {
@@ -249,6 +250,7 @@ function getFilteredParques($filterName, $conditionsArray) {
     }
     $conn = null;
 }
+
 
 
 
