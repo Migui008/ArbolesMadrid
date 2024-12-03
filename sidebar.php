@@ -1,5 +1,6 @@
 <div id="sidebar">
   <div id="sidebar_mostVisited">
+    <p id="sidebar_mostVisited_title">Artículos más visitados</p>
     <?php
     require_once('dtbconnection.php');
 
