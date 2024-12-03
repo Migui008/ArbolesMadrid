@@ -17,6 +17,7 @@ $arboles_filter['familia']['opciones'] = getOptionsForSelect('familia', 'arboles
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Árboles</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="image/icono.png">
 </head>
 <body>
     <?php require_once('header.php'); ?>
