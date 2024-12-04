@@ -397,6 +397,7 @@ body{
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
+    height: max-content;
 }
 
 #article_main_sidebar_image{
