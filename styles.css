@@ -442,6 +442,11 @@ body{
     
 }
 
+#article_main_content_edit{
+    position: relative;
+    padding-left: 128px;
+}
+
 /* Medidas responsivas */
 @media (max-width: 768px) {
     #header {
