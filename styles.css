@@ -438,13 +438,12 @@ body{
     font-size: 1.4em;
 }
 
-.article_main_sidebar_content_text{
-    
+#article_main_content_edit{
+    padding-top: 80px;
 }
 
-#article_main_content_edit{
-    position: relative;
-    padding-left: 128px;
+#article_main_content_edit:hover{
+    cursor: pointer;
 }
 
 /* Medidas responsivas */
