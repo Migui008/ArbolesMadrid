@@ -408,8 +408,8 @@ body{
 }
 
 #article_main_sidebar_image img{
-    width: 18%;
-    height: 12.5%;
+    width: 100%;
+    height: 100%;
     align-self: center;
     justify-self: center;
 }
