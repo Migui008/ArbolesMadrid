@@ -84,7 +84,7 @@ body{
 
 #sidebar {
     width: 10vw;
-    height: 100%;
+    height: 100vh;
     background-color: #697565;
     display: flexbox;
 }
@@ -119,6 +119,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 100vh;
     width: 100%;
     background-color: #F6FCDF;
 }
@@ -153,7 +154,6 @@ body{
     padding-top: 5%;
 }
 
-/* Estilos para los textos */
 #index_main_arboles h2, #index_main_parques h2 {
     align-self: start;
     color: #31511E;
@@ -334,6 +334,11 @@ body{
 }
 
 #parques_main_filter_form input[type="radio"] {
+    height: 40%;
+    width: 8%;
+}
+
+#parques_main_filter_form input[type="checkbox"] {
     height: 40%;
     width: 8%;
 }
