@@ -107,7 +107,7 @@
       <label class="edit_main_form_label" for="longitud" name="longitud">Longitud</label>
       <input class="edit_main_form_input" id="longitud" type="text" value="<?php echo $contenidoParque['longitud']; ?>" >
       <?php
-        foreach($textoArbol as $textoSeccion){
+        foreach($textoParque as $textoSeccion){
           echo "<p class='edit_main_form_input_paragraph'>Número</p>";
           echo "<input class='edit_main_form_input_number' type='number' min='1' value='". $textoSeccion['numero'] ."' name='numero".$textoSeccion['numero']."'>";
           echo "<p class='edit_main_form_input_paragraph'>Titulo</p>";
