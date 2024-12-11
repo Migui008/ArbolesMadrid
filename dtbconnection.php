@@ -10,9 +10,6 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    // Aquí se realizan las consultas y otras operaciones con la base de datos
-
-    // No es necesario llamar a close() en PDO, simplemente dejamos que el objeto $conn se elimine cuando ya no se necesite.
 } catch(PDOException $e) {
     echo "Error de conexión: " . $e->getMessage();
 }
