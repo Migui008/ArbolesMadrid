@@ -38,6 +38,23 @@
       <div id="index_main_bibliografia">
         <h2 class="index_main_bibliografia_title">Autor:</h2>
         <p class="index_main_bibliografia_text">Miguel Salvador Rioja</p>
+        <h2 class="index_main_bibliografia_title">Bibliografía:</h2>
+        <p class="index_main_bibliografia_text">
+Ayuntamiento de Madrid. (2023). Informe anual Arbolado parques históricos, singulares y forestales 2023. Ayuntamiento de Madrid.<br> 
+Ayuntamiento de Madrid, Departamento de Transporte Público. <br>
+Ayuntamiento de Madrid, Departamento de Planificación Urbana y Medio Ambiente.<br> 
+Ayuntamiento de Madrid, en colaboración con la Compañía de Ferrocarriles Españoles (RENFE).<br> 
+GBIF.org. (2024). Página de inicio de GBIF. Recuperado el 5 de junio de 2024, de https://www.gbif.org<br> 
+<br>
+Imágenes:<br> 
+Icons8. (n.d.). Recuperado de https://icons8.com/<br> 
+<br>
+Otros:<br> 
+ChatGPT. (Traducción y depuración). <br>
+Google. (s.f.). Google Maps Platform. Recuperado de https://cloud.google.com/maps-platform <br>
+PHP Documentation. (s.f.). Recuperado de https://www.php.net/docs.php <br>
+MDN Web Docs. (s.f.). Recuperado de https://developer.mozilla.org/en-US/ <br>
+ </p>
       </div>
     </div>
   </div>
