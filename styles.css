@@ -488,6 +488,55 @@ body{
     background-color: #0056b3;
 }
 
+#edit_main{
+    background-color: #F6FCDF;
+}
+
+#edit_main_form{
+    width: 85%;
+    padding-left: 8%;
+    padding-top: 5%;
+}
+
+.edit_main_form_label{
+    width: 10%;
+}
+
+.edit_main_form_input{
+    width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+    background-color: #F2EDE5
+}
+
+.edit_main_form_input_number{
+    width: 100%;
+    background-color: #F2EDE5
+}
+
+.edit_main_form_input_paragraph{
+    width: 100%;
+}
+
+.edit_main_form_input_textarea{
+    width: 100%;
+    background-color: #F2EDE5
+}
+
+#edit_main_form_submit{
+    width: 180px;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-bottom: 10px;
+}
+
+#edit_main_form_submit:hover{
+    background-color: #859F3D;
+    cursor: pointer;
+}
+
 /* Medidas responsivas */
 @media (max-width: 768px) {
     #header {
