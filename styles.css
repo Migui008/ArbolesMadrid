@@ -118,8 +118,7 @@ body{
 #index_main {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    min-height: calc(100vh - 15vh);
+    height: 100vh;
     width: 100%;
     background-color: #F6FCDF;
 }
