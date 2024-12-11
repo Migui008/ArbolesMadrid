@@ -3,12 +3,12 @@ $arboles_filter = [
     "clase" => [
         "tipo" => "select",
         "nombre" => "Clase",
-        "opciones" => [] // Opciones a llenar dinámicamente desde la base de datos
+        "opciones" => [] 
     ],
     "familia" => [
         "tipo" => "select",
         "nombre" => "Familia",
-        "opciones" => [] // Opciones a llenar dinámicamente desde la base de datos
+        "opciones" => [] 
     ],
     "visitas" => [
         "tipo" => "radio",
