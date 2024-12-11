@@ -378,7 +378,6 @@ body{
     position: absolute;
 }
 
-
 #article_main_content {
     flex: 3; 
     min-width: 70%;
@@ -386,6 +385,7 @@ body{
     flex-direction: column;
     gap: 15px;
     padding: 10px;
+    padding-top: 35px;
     border-radius: 5px;
 }
 
@@ -444,6 +444,48 @@ body{
 
 #article_main_content_edit:hover{
     cursor: pointer;
+}
+
+#login_main {
+    background-color: #ffffee;
+    margin: 10%;
+    padding: 10%;
+    border-radius: 45px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#login_main_form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los elementos */
+}
+
+.login_main_form_input {
+    padding: 10px;
+    border: 2px solid #ccc; /* Borde gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease; /* Efecto al pasar el mouse */
+}
+
+.login_main_form_input:focus {
+    border-color: #007BFF;
+}
+
+#login_main_form_submit {
+    padding: 12px;
+    background-color: #007BFF; 
+    color: white;
+    border: none;
+    border-radius: 10px; 
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login_main_form_submit:hover {
+    background-color: #0056b3;
 }
 
 /* Medidas responsivas */
