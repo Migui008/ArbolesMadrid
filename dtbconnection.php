@@ -1,5 +1,5 @@
 <?php
-$servername = "db5015852102.hosting-data.io";
+$servername = "if0_38941525_db5015852102";
 $username = "dbu2608582";
 $password = "JG86AkWs_Ytg@ZG";
 $dbname = "dbs12922058";
